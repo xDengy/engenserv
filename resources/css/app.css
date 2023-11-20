@@ -1,0 +1,77 @@
+:root {
+    /*Colors*/
+    --blackColor: #000000;
+    --whiteColor: #ffffff;
+    --orangeColor: #FF5C00;
+
+    /*Font*/
+    --baseFontFamily: "Geometria", sans-serif;
+    --baseFontWeight: 500;
+    --baseFontSize: 1.6rem;
+
+    --speedNormal: 0.25s;
+    --speedFaster: 0.1s;
+}
+
+html {
+    font-size: calc(100vw / 1920 * 10);
+}
+
+body {
+    background-color: var(--whiteColor);
+    color: var(--blackColor);
+    font-family: var(--baseFontFamily);
+    font-weight: var(--baseFontWeight);
+    font-size: var(--baseFontSize);
+    font-style: normal;
+    line-height: normal;
+    cursor: default;
+}
+
+.container {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+.btn {
+    color: var(--whiteColor);
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    padding: 3rem;
+    text-align: center;
+    transition: var(--speedFaster) ease-in-out;
+}
+
+.btn:hover {
+    box-shadow: 0 4px 9.4px 0 rgba(0, 0, 0, 0.42);
+}
+
+.btn--orange {
+    background: var(--orangeColor);
+}
+
+.btn--round {
+    border-radius: 10rem;
+}
+
+@media (max-width: 1024px) {
+    html {
+        font-size: calc(100vw / 768 * 10);
+    }
+}
+
+@media (max-width: 767px) {
+    html {
+        font-size: calc(100vw / 500 * 10);
+    }
+}
+
+@media (max-width: 376px) {
+    html {
+        font-size: calc(100vw / 370 * 10);
+    }
+}
