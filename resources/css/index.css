@@ -91,7 +91,7 @@ HEADER END
 */
 
 /*
-MAIN
+BANNER
 */
 
 .banner {
@@ -133,5 +133,123 @@ MAIN
 }
 
 /*
-MAIN END
+BANNER END
+*/
+
+
+/*
+ADVANTAGES
+*/
+
+.advantages {
+    padding-top: 10rem;
+}
+
+.advantage {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+/*
+ADVANTAGES END
+*/
+
+
+/*
+NEWS
+*/
+
+.news {
+    padding-top: 10rem;
+}
+
+.news-wrapper {
+    display: flex;
+    justify-content: space-between;
+    height: 57rem;
+}
+
+.news-column {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    width: calc(50% - 15px);
+    gap: 3rem;
+}
+
+.news-item {
+    width: calc(50% - 15px);
+    height: 100%;
+    position: relative;
+}
+
+.news-column .news-item:first-child {
+    width: 100%;
+}
+
+.news-item img {
+    border-radius: 20px;
+}
+
+.news-block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 30px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.news-btn {
+    width: fit-content;
+    padding: 1.5rem;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.8px;
+    font-weight: 500;
+}
+
+.news-column:last-child .news-item {
+    height: calc(50% - 15px);
+}
+
+.news-name {
+    color: var(--whiteColor);
+    font-size: 3rem;
+    line-height: 3rem;
+    letter-spacing: 1.65px;
+}
+
+.news-column:last-child .news-item:first-child .news-block {
+    padding: 1.5rem 3rem 3rem;
+}
+
+.news-column:last-child .news-item:not(:first-child) .news-block {
+    padding: 1.2rem 2rem 2rem;
+}
+
+.news-column:last-child .news-item:first-child .news-block .news-name {
+    font-size: 2.5rem;
+    line-height: 2.5rem;
+    letter-spacing: 1.375px;
+}
+
+.news-column:last-child .news-item:not(:first-child) .news-block .news-name {
+    font-size: 2rem;
+    line-height: 2rem;
+    letter-spacing: 1.1px;
+}
+
+.news-column:last-child .news-item:not(:first-child) .news-block .news-btn {
+    font-size: 1rem;
+    line-height: 1rem;
+    letter-spacing: 0.55px;
+}
+
+/*
+NEWS END
 */

@@ -12,6 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/index.js', 'public/js')
     .styles('resources/css/app.css', 'public/css/app.css')
     .styles('resources/css/index.css', 'public/css/index.css')
     .styles('resources/css/normalize.css', 'public/css/normalize.css');

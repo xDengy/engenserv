@@ -8,6 +8,8 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}" media="screen">
         <link rel="stylesheet" href="{{ asset('css/index.css') }}" media="screen">
         <link rel="stylesheet" href="{{ asset('css/normalize.css') }}" media="screen">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     </head>
     <body>
         <header>
@@ -95,5 +97,7 @@
             </nav>
         </header>
         @yield('content')
+        <script src="{{ asset('js/index.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>
