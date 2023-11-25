@@ -12,6 +12,7 @@
 
 @section('scripts')
     <script src="{{ asset('/js/catalogDetail.js') }}"></script>
+    <script src="{{ asset('js/catalogSection.js') }}"></script>
 @endsection
 
 @section('content')

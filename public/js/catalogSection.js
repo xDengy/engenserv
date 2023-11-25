@@ -19562,14 +19562,22 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!*********************************!*\
-  !*** ./resources/js/catalog.js ***!
-  \*********************************/
+/*!****************************************!*\
+  !*** ./resources/js/catalogSection.js ***!
+  \****************************************/
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-var sortBlock = document.querySelector('.sort-block');
-sortBlock.addEventListener('click', function () {
-  sortBlock.classList.toggle('active');
-});
+var sectionItems = document.querySelectorAll('.section-item');
+var _loop = function _loop(i) {
+  var sectionItemArrow = sectionItems[i].querySelector('.section-arrow');
+  if (sectionItemArrow) {
+    sectionItemArrow.addEventListener('click', function () {
+      sectionItems[i].classList.toggle('active');
+    });
+  }
+};
+for (var i = 0; i < sectionItems.length; i++) {
+  _loop(i);
+}
 })();
 
 /******/ })()
