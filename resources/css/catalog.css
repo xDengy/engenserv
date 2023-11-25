@@ -1,0 +1,129 @@
+section.catalog {
+    margin-bottom: 100px;
+}
+
+/*
+CATALOG
+*/
+
+.title-sort, .title-sort .sort, .item-info, .item-cart-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title-sort {
+    margin-top: 50px;
+}
+
+.title-sort .title {
+    color: var(--blackColor);
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.sort .sort-title {
+    color: var(--blackColor);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-right: 12px;
+}
+
+.sort-block {
+    position: relative;
+}
+
+.selected-value, .select-value {
+    background: #D9D9D9;
+    height: 20px;
+    padding: 0 5px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.selected-value {
+    z-index: 1;
+}
+
+.select-values {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    max-height: 0;
+    transition: all 0.25s;
+    top: 18px;
+    left: 0;
+    background: var(--whiteColor);
+    border-top: transparent;
+    overflow: hidden;
+}
+
+.sort-block.active .select-values {
+    max-height: 300px;
+    border: 0.2px solid var(--blackColor);
+}
+
+.select-values .select-value {
+    background: transparent;
+}
+
+.select-value:hover {
+    background: #D9D9D9;
+}
+
+.catalog-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 30px;
+    margin-top: 50px;
+}
+
+.catalog-item {
+    width: calc(33.33333% - 10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-img {
+    width: 100%;
+    height: 268px;
+}
+
+.item-title, .item-price {
+    color: var(--blackColor);
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.item-info {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.item-price {
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+.item-add-to-cart {
+    margin-left: 15px;
+    background: #1229A4;
+    width: 22px;
+    height: 22px;
+    color: var(--whiteColor);
+    font-size: 2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*
+CATALOG END
+*/

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StaticController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [StaticController::class, 'welcome'])->name('home');
+Route::get('/catalog/', [StaticController::class, 'catalog'])->name('catalog');
+Route::get('/catalog/{id}/', [StaticController::class, 'catalogDetail'])->name('catalogDetail');
+Route::get('/partnership/', [StaticController::class, 'partnership'])->name('partnership');

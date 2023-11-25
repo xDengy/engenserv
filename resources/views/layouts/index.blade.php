@@ -3,18 +3,19 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Laravel</title>
+        @yield('seo')
         <link rel="stylesheet" href="{{ asset('fonts/fonts.css') }}" media="screen">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}" media="screen">
-        <link rel="stylesheet" href="{{ asset('css/index.css') }}" media="screen">
+        <link rel="stylesheet" href="{{ asset('css/headerAndFooter.css') }}" media="screen">
         <link rel="stylesheet" href="{{ asset('css/normalize.css') }}" media="screen">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
     </head>
     <body>
         <header>
-            <div class="container header-container">
-                <a href="/" class="header-logo">
+            <div class="container logo-container">
+                <a href="/" class="logo">
                     <div class="logo-img">
                         <svg width="103" height="96" viewBox="0 0 103 96" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M55.1201 44.6912L61.484 41.1309L61.762 65.9993L55.1201 73.9232V44.6912Z" fill="#1229A4"/>
@@ -64,8 +65,8 @@
                         </div>
                     </div>
                 </a>
-                <div class="header-info">
-                    <div class="phone">
+                <div class="info">
+                    <div class="link">
                         <a href="tel:+7 (495) 730-41-55">
                             +7 (495) 730-41-55
                         </a>
@@ -97,7 +98,88 @@
             </nav>
         </header>
         @yield('content')
-        <script src="{{ asset('js/index.js') }}"></script>
+        <footer>
+            <div class="container">
+                <div class="logo-container">
+                    <a href="/" class="logo">
+                        <div class="logo-img">
+                            <svg width="103" height="96" viewBox="0 0 103 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M55.1201 44.6912L61.484 41.1309L61.762 65.9993L55.1201 73.9232V44.6912Z" fill="#1229A4"/>
+                                <path d="M55.1201 44.6912L61.484 41.1309L61.762 65.9993L55.1201 73.9232V44.6912Z" fill="url(#paint0_linear_18_106)" fill-opacity="0.48"/>
+                                <path d="M47.6416 51.0236L41.2778 54.584L40.9997 29.7156L47.6416 21.7917V51.0236Z" fill="#FF5C00"/>
+                                <path d="M47.6416 51.0236L41.2778 54.584L40.9997 29.7156L47.6416 21.7917V51.0236Z" fill="url(#paint1_linear_18_106)" fill-opacity="0.7"/>
+                                <g filter="url(#filter0_f_18_106)">
+                                    <rect x="61.0195" y="41.6826" width="0.389682" height="9.685" transform="rotate(36.1412 61.0195 41.6826)" fill="#0B1342"/>
+                                </g>
+                                <g filter="url(#filter1_f_18_106)">
+                                    <rect x="47.2627" y="46.0527" width="0.389682" height="9.46249" transform="rotate(36.1412 47.2627 46.0527)" fill="#B12626"/>
+                                </g>
+                                <rect x="41.2627" y="54.5967" width="22.8261" height="8.31967" transform="rotate(-53.6854 41.2627 54.5967)" fill="#FF5C00"/>
+                                <rect x="41.2627" y="54.5967" width="22.8261" height="8.31967" transform="rotate(-53.6854 41.2627 54.5967)" fill="url(#paint2_radial_18_106)" fill-opacity="0.2"/>
+                                <defs>
+                                    <filter id="filter0_f_18_106" x="13.9338" y="0.308815" width="88.774" height="90.7986" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                                        <feGaussianBlur stdDeviation="20.6869" result="effect1_foregroundBlur_18_106"/>
+                                    </filter>
+                                    <filter id="filter1_f_18_106" x="0.307838" y="4.67893" width="88.6431" height="90.6189" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                                        <feGaussianBlur stdDeviation="20.6869" result="effect1_foregroundBlur_18_106"/>
+                                    </filter>
+                                    <linearGradient id="paint0_linear_18_106" x1="58.4411" y1="41.1309" x2="58.4411" y2="73.9232" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#0A1D7D"/>
+                                        <stop offset="1" stop-color="#19E3F0"/>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_18_106" x1="44.3207" y1="54.584" x2="44.3207" y2="30.1635" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#FF1F00"/>
+                                        <stop offset="1" stop-color="#FFC700"/>
+                                    </linearGradient>
+                                    <radialGradient id="paint2_radial_18_106" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(52.6758 58.7565) rotate(90) scale(4.15983 11.4131)">
+                                        <stop stop-color="#FFE600"/>
+                                        <stop offset="1" stop-color="#FF5C00"/>
+                                    </radialGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="logo-text">
+                            <div class="logo-text-main">
+                                Инженерсервис
+                            </div>
+                            <div class="logo-text-sub">
+                                Группа компаний производителей
+                            </div>
+                        </div>
+                    </a>
+                    <div class="info">
+                        <div class="link">
+                            <a href="tel:+7 (495) 730-41-55">
+                                +7 (495) 730-41-55
+                            </a>
+                        </div>
+                        <div class="link">
+                            <a href="mailto:email@adress.com">
+                                email@adress.com
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <nav class="menu">
+                    <a href="">Каталог</a>
+                    <a href="">Новинки</a>
+                    <a href="">Новости</a>
+                    <a href="">Наши партнёры</a>
+                    <a href="">Контакты</a>
+                    <a href="">О компании</a>
+                </nav>
+                <div class="copyright-text">
+                    2014 © ООО "Инженерсервис".
+                    <br>
+                    При любом использованиии материалов, опубликованных на сайте, активная ссылка на оригинальную страницу сайта обязательна.
+                </div>
+            </div>
+        </footer>
         <script src="{{ asset('js/app.js') }}"></script>
+        @yield('scripts')
     </body>
 </html>

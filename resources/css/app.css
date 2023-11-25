@@ -3,6 +3,7 @@
     --blackColor: #000000;
     --whiteColor: #ffffff;
     --orangeColor: #FF5C00;
+    --blueColor: #2749A2;
 
     /*Font*/
     --baseFontFamily: "Geometria", sans-serif;
@@ -44,14 +45,23 @@ body {
     padding: 3rem;
     text-align: center;
     transition: var(--speedFaster) ease-in-out;
+    cursor: pointer;
 }
 
 .btn:hover {
     box-shadow: 0 4px 9.4px 0 rgba(0, 0, 0, 0.42);
 }
 
+.btn--bordered {
+    border: 1px solid;
+}
+
 .btn--orange {
     background: var(--orangeColor);
+}
+
+.btn--blue {
+    background: var(--blueColor);
 }
 
 .btn--round {

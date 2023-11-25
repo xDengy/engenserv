@@ -1,4 +1,5 @@
 require('./bootstrap');
+const {SuperGif} = require("@wizpanda/super-gif");
 
 const swiper = new Swiper('.advantages .swiper', {
     loop: true,
@@ -21,3 +22,15 @@ const swiper = new Swiper('.advantages .swiper', {
         }
     }
 });
+
+let imgs = document.querySelectorAll('.gif');
+for (let i = 0; i < imgs.length; i++) {
+    let img_tag = imgs[i];
+    if (/.*\.gif/.test(img_tag.src)) {
+        console.log(img_tag);
+        var rub = new SuperGif({ gif: img_tag }, []);
+        rub.load(function(){
+            console.log('oh hey, now the gif is loaded');
+        });
+    }
+}

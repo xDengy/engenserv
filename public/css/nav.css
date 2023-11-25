@@ -1,0 +1,33 @@
+.page-navigation {
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.nav-text {
+    color: #2749A3;
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.nav-item {
+    color: #2749A3;
+    font-size: 2rem;
+    font-weight: 700;
+    opacity: 0.5;
+    margin-right: 10px;
+}
+
+.nav-item:last-child {
+    margin-right: 0;
+}
+
+.nav-item.selected {
+    opacity: 1;
+}
+
+.nav-arrow, .nav-text {
+    margin-right: 20px;
+}
