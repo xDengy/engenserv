@@ -5,8 +5,8 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <link rel="stylesheet" href="{{ asset('/css/partnership.css') }}" media="screen">
-    <link rel="stylesheet" href="{{ asset('/css/nav.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/breadcrumbs.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ asset('/css/form.css') }}" media="screen">
 @endsection
 
 @section('scripts')

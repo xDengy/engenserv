@@ -1,0 +1,81 @@
+.about {
+    margin-top: 60px;
+}
+
+h1 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.desc-block {
+    display: flex;
+    justify-content: space-between;
+}
+
+.page-desc {
+    color: var(--blackColor);
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 0.2px;
+    width: 68%;
+}
+
+.page-imgs {
+    width: 23%;
+}
+
+.advantages {
+    background: #2749A3;
+    margin-top: 100px;
+}
+
+.advantages .container {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.advantage-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px;
+}
+
+.advantage {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.advantage-text {
+    color: var(--whiteColor);
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+.advantages .advantage {
+    display: flex;
+    height: auto;
+}
+
+.advantage-icon svg {
+    height: 100%;
+    display: block;
+}
+
+.desc-block-container {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.swiper .swiper-pagination-bullet {
+    border-radius: 0;
+    border: 1px solid var(--orangeColor);
+    background: transparent;
+    width: 10px;
+    height: 10px;
+}

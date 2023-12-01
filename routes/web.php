@@ -16,5 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [StaticController::class, 'welcome'])->name('home');
 Route::get('/catalog/', [StaticController::class, 'catalog'])->name('catalog');
-Route::get('/catalog/{id}/', [StaticController::class, 'catalogDetail'])->name('catalogDetail');
+Route::get('/catalog/{code}/', [StaticController::class, 'catalogDetail'])->name('catalogDetail');
 Route::get('/partnership/', [StaticController::class, 'partnership'])->name('partnership');
+Route::get('/news/', [StaticController::class, 'news'])->name('news');
+Route::get('/about/', [StaticController::class, 'about'])->name('about');
+Route::get('/dev/', [StaticController::class, 'dev'])->name('dev');
+Route::get('/contacts/', [StaticController::class, 'contacts'])->name('contacts');
+Route::get('/cart/', [StaticController::class, 'cart'])->name('cart');
+Route::get('/offer/', [StaticController::class, 'offer'])->name('offer');

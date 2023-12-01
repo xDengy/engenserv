@@ -5,7 +5,6 @@ const swiper = new Swiper('.advantages .swiper', {
     loop: true,
     speed: 400,
     allowTouchMove: true,
-    autoHeight: true,
     slidesPerView: 3,
     spaceBetween: 10,
     // Responsive breakpoints

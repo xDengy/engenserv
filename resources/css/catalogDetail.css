@@ -31,7 +31,6 @@ CATALOG
 h1 {
     color: var(--blackColor);
     font-size: 3rem;
-    font-weight: 500;
 }
 
 .detail-tag {

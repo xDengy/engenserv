@@ -6,7 +6,6 @@
     <meta name="keywords" content="">
     <link rel="stylesheet" href="{{ asset('/css/catalogDetail.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/catalogSection.css') }}" media="screen">
-    <link rel="stylesheet" href="{{ asset('/css/nav.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/breadcrumbs.css') }}" media="screen">
 @endsection
 

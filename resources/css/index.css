@@ -59,6 +59,16 @@ ADVANTAGES
     gap: 2rem;
 }
 
+.advantages .swiper-slide {
+    display: flex;
+    height: auto;
+}
+
+.advantage-icon svg {
+    height: 100%;
+    display: block;
+}
+
 /*
 ADVANTAGES END
 */
@@ -118,7 +128,6 @@ NEWS
     font-size: 1.5rem;
     line-height: 1.5rem;
     letter-spacing: 0.8px;
-    font-weight: 500;
 }
 
 .news-column:last-child .news-item {

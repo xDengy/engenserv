@@ -16,7 +16,7 @@ class StaticController extends Controller
         return view('catalog.catalog', []);
     }
 
-    function catalogDetail($id)
+    function catalogDetail($code)
     {
         return view('catalog.catalogDetail', []);
     }
@@ -24,5 +24,35 @@ class StaticController extends Controller
     function partnership()
     {
         return view('partnership', []);
+    }
+
+    function news()
+    {
+        return view('news', []);
+    }
+
+    function about()
+    {
+        return view('about', []);
+    }
+
+    function contacts()
+    {
+        return view('contacts', []);
+    }
+
+    function cart()
+    {
+        return view('cart.cart', []);
+    }
+
+    function offer()
+    {
+        return view('cart.offer', []);
+    }
+
+    function dev()
+    {
+        return view('dev', []);
     }
 }
