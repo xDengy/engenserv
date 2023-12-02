@@ -55,12 +55,5 @@
     "/fonts/Geometria-Medium.woff2": "/fonts/Geometria-Medium.woff2",
     "/fonts/Geometria-MediumItalic.woff": "/fonts/Geometria-MediumItalic.woff",
     "/fonts/Geometria-MediumItalic.woff2": "/fonts/Geometria-MediumItalic.woff2",
-    "/fonts/fonts.css": "/fonts/fonts.css",
-    "/fonts/geometria_bold.otf": "/fonts/geometria_bold.otf",
-    "/fonts/geometria_bolditalic.otf": "/fonts/geometria_bolditalic.otf",
-    "/fonts/geometria_extrabold.otf": "/fonts/geometria_extrabold.otf",
-    "/fonts/geometria_light.otf": "/fonts/geometria_light.otf",
-    "/fonts/geometria_lightitalic.otf": "/fonts/geometria_lightitalic.otf",
-    "/fonts/geometria_medium.otf": "/fonts/geometria_medium.otf",
-    "/fonts/geometria_mediumitalic.otf": "/fonts/geometria_mediumitalic.otf"
+    "/fonts/fonts.css": "/fonts/fonts.css"
 }

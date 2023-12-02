@@ -10,3 +10,7 @@
 <br>
 <a href="{{route('about')}}">О компании</a>
 <br>
+<a href="{{route('cart')}}">Корзина</a>
+<br>
+<a href="{{route('offer')}}">Заказ</a>
+<br>
