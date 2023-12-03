@@ -1,0 +1,76 @@
+<?php
+
+namespace App\Orchid\Screens;
+
+use App\Models\Catalog;
+use Illuminate\Http\Request;
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\Group;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Alert;
+use Orchid\Support\Facades\Layout;
+
+class FoldersEditInSectScreen extends Screen
+{
+
+    public $name = 'Раздел';
+    public $exists = false;
+    public $parent = null;
+
+    public function query(Catalog $el): array
+    {
+        $this->exists = false;
+        $this->parent = $el;
+        if($this->exists){
+            $this->name = $el->name;;
+        } else {
+            $this->name = 'Создать';
+        }
+        return [
+            'folder' => null
+        ];
+    }
+
+    public function commandBar(): array
+    {
+        return [
+            Button::make('Создать')
+                ->icon('save-alt')
+                ->method('createOrUpdate'),
+
+            Link::make('Назад')
+                ->icon('arrow-left')
+                ->route('platform.folder.list', $this->parent)
+        ];
+    }
+
+    public function layout(): array
+    {
+        return [
+            Layout::rows([
+                Group::make([
+                    Input::make('folder.name')
+                        ->title('Name')
+                        ->placeholder('Name')
+                        ->required(),
+                    Input::make('folder.folder_id')
+                        ->type('hidden')
+                        ->value($this->parent->id),
+                    Input::make('folder.is_folder')
+                        ->type('hidden')
+                        ->value(1),
+                ]),
+            ])->title('Catalog'),
+        ];
+    }
+
+    public function createOrUpdate(Catalog $el, Request $request)
+    {
+        Catalog::create($request->get('folder'));
+
+        Alert::info('You have successfully created / updated.');
+        return redirect()->route('platform.folder.list', $el->id);
+    }
+}

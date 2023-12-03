@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('folders', function (Blueprint $table) {
+        Schema::create('catalogs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('price')->nullable();
+            $table->text('text')->nullable();
+            $table->text('chars')->nullable();
+            $table->text('scheme')->nullable();
+            $table->char('is_folder');
             $table->foreignId('folder_id')->nullable();
             $table->timestamps();
         });
@@ -24,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('folders');
+        Schema::dropIfExists('catalogs');
     }
 };

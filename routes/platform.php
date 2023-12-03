@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Orchid\Screens\ElementEditInSectScreen;
+use App\Orchid\Screens\ElementEditScreen;
 use App\Orchid\Screens\Examples\ExampleActionsScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
@@ -11,6 +13,9 @@ use App\Orchid\Screens\Examples\ExampleGridScreen;
 use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
 use App\Orchid\Screens\Examples\ExampleScreen;
 use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
+use App\Orchid\Screens\FoldersEditInSectScreen;
+use App\Orchid\Screens\FoldersEditScreen;
+use App\Orchid\Screens\FoldersListScreen;
 use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
@@ -102,3 +107,16 @@ Route::screen('/examples/charts', ExampleChartsScreen::class)->name('platform.ex
 Route::screen('/examples/cards', ExampleCardsScreen::class)->name('platform.example.cards');
 
 //Route::screen('idea', Idea::class, 'platform.screens.idea');
+
+
+
+
+Route::screen('folders', FoldersListScreen::class)->name('platform.folder.list');
+Route::screen('folderCreate', FoldersEditScreen::class)->name('platform.folder.create');
+Route::screen('folderCreate/{id}', FoldersEditInSectScreen::class)->name('platform.folder.createInSection');
+Route::screen('folders/{id}', FoldersListScreen::class)->name('platform.folder.listFolder');
+Route::screen('foldersEdit/{id}', FoldersEditScreen::class)->name('platform.folder.edit');
+
+Route::screen('elemCreate', ElementEditScreen::class)->name('platform.elems.create');
+Route::screen('elemCreate/{id}', ElementEditInSectScreen::class)->name('platform.elems.createInSection');
+Route::screen('elems/{id}', ElementEditScreen::class)->name('platform.elems.edit');
