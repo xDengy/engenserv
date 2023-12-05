@@ -25,6 +25,16 @@ use App\Orchid\Screens\User\UserProfileScreen;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
 
+use App\Orchid\Screens\MainListScreen;
+use App\Orchid\Screens\MainEditScreen;
+use App\Orchid\Screens\SettingListScreen;
+use App\Orchid\Screens\SettingEditScreen;
+use App\Orchid\Screens\MenuListScreen;
+use App\Orchid\Screens\MenuEditScreen;
+use App\Orchid\Screens\NewsListScreen;
+use App\Orchid\Screens\NewsEditScreen;
+use App\Orchid\Screens\AboutListScreen;
+use App\Orchid\Screens\AboutEditScreen;
 /*
 |--------------------------------------------------------------------------
 | Dashboard Routes
@@ -109,8 +119,6 @@ Route::screen('/examples/cards', ExampleCardsScreen::class)->name('platform.exam
 //Route::screen('idea', Idea::class, 'platform.screens.idea');
 
 
-
-
 Route::screen('folders', FoldersListScreen::class)->name('platform.folder.list');
 Route::screen('folderCreate', FoldersEditScreen::class)->name('platform.folder.create');
 Route::screen('folderCreate/{id}', FoldersEditInSectScreen::class)->name('platform.folder.createInSection');
@@ -120,3 +128,25 @@ Route::screen('foldersEdit/{id}', FoldersEditScreen::class)->name('platform.fold
 Route::screen('elemCreate', ElementEditScreen::class)->name('platform.elems.create');
 Route::screen('elemCreate/{id}', ElementEditInSectScreen::class)->name('platform.elems.createInSection');
 Route::screen('elems/{id}', ElementEditScreen::class)->name('platform.elems.edit');
+
+Route::screen('mainBanner', MainListScreen::class)->name('platform.mainBanner.list');
+Route::screen('mainBanner/{id}', MainEditScreen::class)->name('platform.mainBanner.editItem');
+Route::screen('mainBannerEdit', MainEditScreen::class)->name('platform.mainBanner.edit');
+
+Route::screen('setting', SettingListScreen::class)->name('platform.setting.list');
+Route::screen('setting/{id}', SettingEditScreen::class)->name('platform.setting.editItem');
+Route::screen('settingEdit', SettingEditScreen::class)->name('platform.setting.edit');
+
+Route::screen('menu', MenuListScreen::class)->name('platform.menu.list');
+Route::screen('menu/{id}', MenuEditScreen::class)->name('platform.menu.editItem');
+Route::screen('menuEdit', MenuEditScreen::class)->name('platform.menu.edit');
+
+Route::screen('news', NewsListScreen::class)->name('platform.news.list');
+Route::screen('news/{id}', NewsEditScreen::class)->name('platform.news.editItem');
+Route::screen('newsEdit', NewsEditScreen::class)->name('platform.news.edit');
+
+Route::screen('about', AboutListScreen::class)->name('platform.about.list');
+Route::screen('about/{id}', AboutEditScreen::class)->name('platform.about.editItem');
+Route::screen('aboutEdit', AboutEditScreen::class)->name('platform.about.edit');
+
+

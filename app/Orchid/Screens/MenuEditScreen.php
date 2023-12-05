@@ -2,7 +2,7 @@
 
 namespace App\Orchid\Screens;
 
-use App\Models\Catalog;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
@@ -16,25 +16,26 @@ use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Layout;
 
-class FoldersEditScreen extends Screen
+class MenuEditScreen extends Screen
 {
 
-    public $name = 'Catalog';
+    public $name = 'Menu';
     public $exists = false;
     public $parent = null;
 
-    public function query($id): array
+    public function query($id = null): array
     {
-        $el = Catalog::find($id);
-        $this->exists = $el->exists;
+        if ($id) {
+            $el = Menu::find($id);
+            $this->exists = $el->exists;
+        }
         if($this->exists){
-            $this->parent = Catalog::find($el->folder_id);
             $this->name = $el->name;
         } else {
             $this->name = 'Создать';
         }
         return [
-            'folder' => $el
+            'menu' => $el ?? null
         ];
     }
 
@@ -58,7 +59,7 @@ class FoldersEditScreen extends Screen
 
             Link::make('Назад')
                 ->icon('arrow-left')
-                ->route('platform.folder.list', $this->parent)
+                ->route('platform.menu.list')
         ];
     }
 
@@ -67,43 +68,42 @@ class FoldersEditScreen extends Screen
         return [
             Layout::rows([
                 Group::make([
-                    Input::make('folder.name')
-                        ->title('Name')
-                        ->placeholder('Name')
+                    Input::make('menu.name')
+                        ->title('Название')
                         ->required(),
-                    Input::make('folder.is_folder')
-                        ->type('hidden')
-                        ->value(1),
-                    Input::make('folder.id')
+                    Input::make('menu.link')
+                        ->title('Ссылка')
+                        ->required(),
+                    Input::make('menu.sort')
+                        ->title('Сортировка')
+                        ->type('number')
+                        ->required(),
+                    Input::make('menu.id')
                         ->type('hidden'),
                 ]),
-            ])->title('Catalog'),
+            ]),
         ];
     }
 
-    public function createOrUpdate(Catalog $el, Request $request)
+    public function createOrUpdate(Menu $el, Request $request)
     {
-        $requestAr = $request->get('folder');
-        $el = Catalog::find($requestAr['id']);
-        $el->update($requestAr);
+        $requestAr = $request->get('menu');
+        if ($requestAr['id']) {
+            $el = Menu::find($requestAr['id']);
+            $el->update($requestAr);
+        } else {
+            Menu::create($requestAr);
+        }
 
         Alert::info('You have successfully created / updated.');
-        return redirect()->route('platform.folder.list', $el ?? null);
+        return redirect()->route('platform.menu.list');
     }
 
-    public function deleteFolder($folderData)
+    public function remove($id)
     {
-        $folders = Catalog::where('folder_id', $folderData->id)->get();
-        foreach ($folders as $key => $folder) {
-            self::deleteFolder($folder);
-        }
-        $folderData->delete();
-    }
-
-    public function remove(Catalog $el)
-    {
-        self::deleteFolder($el);
+        $el = Menu::find($id);
+        $el->delete();
         Alert::info('You have successfully deleted.');
-        return redirect()->route('platform.folder.list', $el->folder_id);
+        return redirect()->route('platform.menu.list');
     }
 }

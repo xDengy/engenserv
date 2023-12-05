@@ -2,38 +2,38 @@
 
 namespace App\Orchid\Screens;
 
-use App\Models\Catalog;
+use App\Models\News;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Picture;
 use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Layout;
 
-class ElementEditScreen extends Screen
+class NewsEditScreen extends Screen
 {
 
-    public $name = 'Товар';
+    public $name = 'News';
     public $exists = false;
     public $parent = null;
-    public $el = null;
 
-    public function query($id): array
+    public function query($id = null): array
     {
-        $el = Catalog::find($id);
-        $this->el = $el;
-        $this->exists = $el->exists;
+        if ($id) {
+            $el = News::find($id);
+            $this->exists = $el->exists;
+        }
         if($this->exists){
-            $this->parent = Catalog::find($el->folder_id);
             $this->name = $el->name;
         } else {
             $this->name = 'Создать';
         }
         return [
-            'element' => $el
+            'news' => $el ?? null
         ];
     }
 
@@ -57,7 +57,7 @@ class ElementEditScreen extends Screen
 
             Link::make('Назад')
                 ->icon('arrow-left')
-                ->route('platform.folder.list', $this->parent)
+                ->route('platform.news.list')
         ];
     }
 
@@ -66,53 +66,49 @@ class ElementEditScreen extends Screen
         return [
             Layout::rows([
                 Group::make([
-                    Input::make('element.name')
+                    Input::make('news.name')
                         ->title('Название')
-                        ->placeholder('Название')
                         ->required(),
-                    Input::make('element.price')
-                        ->title('Цена')
-                        ->placeholder('Цена')
+                    Input::make('news.sort')
+                        ->title('Сортировка')
+                        ->type('number')
                         ->required(),
-                    Input::make('element.is_folder')
-                        ->type('hidden')
-                        ->value(0),
-                    Input::make('element.id')
+                    Input::make('news.id')
                         ->type('hidden'),
                 ]),
-            ])->title('Товар'),
+            ]),
             Layout::rows([
                 Group::make([
-                    Quill::make('element.text')
-                        ->title('Описание товара')
-                        ->placeholder('Описание товара')
+                    Quill::make('news.text')
+                        ->title('Описание')
                         ->required(),
-                    Quill::make('element.chars')
-                        ->title('Характеристики')
-                        ->placeholder('Характеристики'),
-                    Quill::make('element.scheme')
-                        ->title('Схема')
-                        ->placeholder('Схема'),
+                    Picture::make('news.image')
+                        ->title('Картинка')
+                        ->required(),
                 ]),
-            ])->title('Описание'),
+            ]),
         ];
     }
 
-    public function createOrUpdate(Catalog $el, Request $request)
+    public function createOrUpdate(News $el, Request $request)
     {
-        $requestAr = $request->get('element');
-        $el = Catalog::find($requestAr['id']);
-        $el->update($requestAr);
+        $requestAr = $request->get('news');
+        if ($requestAr['id']) {
+            $el = News::find($requestAr['id']);
+            $el->update($requestAr);
+        } else {
+            News::create($requestAr);
+        }
 
         Alert::info('You have successfully created / updated.');
-        return redirect()->route('platform.folder.list', $el ? $el->folder_id : null);
+        return redirect()->route('platform.news.list');
     }
 
     public function remove($id)
     {
-        $el = Catalog::find($id);
+        $el = News::find($id);
         $el->delete();
         Alert::info('You have successfully deleted.');
-        return redirect()->route('platform.folder.list', $el->folder_id);
+        return redirect()->route('platform.news.list');
     }
 }

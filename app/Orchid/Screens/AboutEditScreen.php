@@ -2,38 +2,40 @@
 
 namespace App\Orchid\Screens;
 
-use App\Models\Catalog;
+use App\Models\About;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\Code;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Picture;
 use Orchid\Screen\Fields\Quill;
+use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Layout;
 
-class ElementEditScreen extends Screen
+class AboutEditScreen extends Screen
 {
 
-    public $name = 'Товар';
+    public $name = 'About';
     public $exists = false;
     public $parent = null;
-    public $el = null;
 
-    public function query($id): array
+    public function query($id = null): array
     {
-        $el = Catalog::find($id);
-        $this->el = $el;
-        $this->exists = $el->exists;
+        if ($id) {
+            $el = About::find($id);
+            $this->exists = $el->exists;
+        }
         if($this->exists){
-            $this->parent = Catalog::find($el->folder_id);
             $this->name = $el->name;
         } else {
             $this->name = 'Создать';
         }
         return [
-            'element' => $el
+            'about' => $el ?? null
         ];
     }
 
@@ -57,7 +59,7 @@ class ElementEditScreen extends Screen
 
             Link::make('Назад')
                 ->icon('arrow-left')
-                ->route('platform.folder.list', $this->parent)
+                ->route('platform.about.list')
         ];
     }
 
@@ -66,53 +68,52 @@ class ElementEditScreen extends Screen
         return [
             Layout::rows([
                 Group::make([
-                    Input::make('element.name')
+                    Input::make('about.name')
                         ->title('Название')
-                        ->placeholder('Название')
                         ->required(),
-                    Input::make('element.price')
-                        ->title('Цена')
-                        ->placeholder('Цена')
+                    Input::make('about.link')
+                        ->title('Ссылка')
                         ->required(),
-                    Input::make('element.is_folder')
-                        ->type('hidden')
-                        ->value(0),
-                    Input::make('element.id')
+                    Input::make('about.sort')
+                        ->title('Сортировка')
+                        ->type('number')
+                        ->required(),
+                    Input::make('about.use_advantages')
+                        ->title('Выводить преимущества')
+                        ->type('checkbox'),
+                    Input::make('about.id')
                         ->type('hidden'),
                 ]),
-            ])->title('Товар'),
+            ]),
             Layout::rows([
                 Group::make([
-                    Quill::make('element.text')
-                        ->title('Описание товара')
-                        ->placeholder('Описание товара')
+                    Quill::make('about.text')
+                        ->title('Описание')
                         ->required(),
-                    Quill::make('element.chars')
-                        ->title('Характеристики')
-                        ->placeholder('Характеристики'),
-                    Quill::make('element.scheme')
-                        ->title('Схема')
-                        ->placeholder('Схема'),
                 ]),
-            ])->title('Описание'),
+            ]),
         ];
     }
 
-    public function createOrUpdate(Catalog $el, Request $request)
+    public function createOrUpdate(About $el, Request $request)
     {
-        $requestAr = $request->get('element');
-        $el = Catalog::find($requestAr['id']);
-        $el->update($requestAr);
+        $requestAr = $request->get('about');
+        if ($requestAr['id']) {
+            $el = About::find($requestAr['id']);
+            $el->update($requestAr);
+        } else {
+            About::create($requestAr);
+        }
 
         Alert::info('You have successfully created / updated.');
-        return redirect()->route('platform.folder.list', $el ? $el->folder_id : null);
+        return redirect()->route('platform.about.list');
     }
 
     public function remove($id)
     {
-        $el = Catalog::find($id);
+        $el = About::find($id);
         $el->delete();
         Alert::info('You have successfully deleted.');
-        return redirect()->route('platform.folder.list', $el->folder_id);
+        return redirect()->route('platform.about.list');
     }
 }
