@@ -2,13 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Main;
+use App\Models\Menu;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class StaticController extends Controller
 {
+    public array $data = [];
+    function __construct()
+    {
+        $this->data['settings'] = Setting::first();
+        $this->data['menu'] = Menu::orderBy('sort')->get();
+    }
+
     function welcome()
     {
-        return view('welcome', []);
+        $this->data['main'] = Main::first();
+        return view('welcome', $this->data);
     }
 
     function catalog()

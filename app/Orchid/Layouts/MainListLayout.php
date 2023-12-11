@@ -14,7 +14,7 @@ class MainListLayout extends Table
     {
         return [
             TD::make('id', 'ID')->render(function (Main $el) {
-                return Link::make($el->id)->route('platform.mainBanner.editItem', $el);
+                return Link::make('Изменить баннер')->route('platform.mainBanner.editItem', $el);
             })
         ];
     }

@@ -25,6 +25,7 @@ class CatalogListLayout extends Table
             TD::make('id', 'ID')->render(function (Catalog $el){
                 return $el->id;
             }),
+            TD::make('sort', 'Сортировка')->sort(),
         ];
     }
 }

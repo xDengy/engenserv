@@ -2,23 +2,23 @@
 
 namespace App\Orchid\Screens;
 
-use App\Models\Setting;
-use App\Orchid\Layouts\SettingListLayout;
+use App\Models\Contact;
+use App\Orchid\Layouts\ContactListLayout;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 
-class SettingListScreen extends Screen
+class ContactListScreen extends Screen
 {
-    public $name = 'Настройка';
+    public $name = 'Контакты';
     public $folder = null;
     public $exist = false;
     public $parent = null;
 
     public function query($id = null): array
     {
-        $this->exist = Setting::first();
+        $this->exist = Contact::first();
         return [
-            'settings' => Setting::filters()->defaultSort('id', 'desc')->paginate()
+            'contacts' => Contact::filters()->defaultSort('id', 'desc')->paginate()
         ];
     }
 
@@ -28,7 +28,7 @@ class SettingListScreen extends Screen
         if(!$this->exist) {
             $commandAr[] = Link::make('Добавить элемент')
                 ->icon('plus')
-                ->route('platform.setting.edit');
+                ->route('platform.contact.edit');
         }
 
         return $commandAr;
@@ -37,7 +37,7 @@ class SettingListScreen extends Screen
     public function layout(): array
     {
         return [
-            SettingListLayout::class
+            ContactListLayout::class
         ];
     }
 }

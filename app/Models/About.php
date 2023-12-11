@@ -12,7 +12,7 @@ use Orchid\Screen\AsSource;
 class About extends Model
 {
     use HasFactory, AsSource, Attachable, Filterable, Chartable;
-
+    protected $table = 'about_blocks';
     protected $fillable = [
         'name',
         'text',

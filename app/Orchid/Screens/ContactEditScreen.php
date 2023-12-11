@@ -2,38 +2,40 @@
 
 namespace App\Orchid\Screens;
 
-use App\Models\News;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\Code;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Picture;
 use Orchid\Screen\Fields\Quill;
+use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Layout;
 
-class NewsEditScreen extends Screen
+class ContactEditScreen extends Screen
 {
 
-    public $name = 'News';
+    public $name = 'Contact';
     public $exists = false;
     public $parent = null;
 
     public function query($id = null): array
     {
         if ($id) {
-            $el = News::find($id);
+            $el = Contact::find($id);
             $this->exists = $el->exists;
         }
         if($this->exists){
-            $this->name = $el->name;
+            $this->name = 'Изменить контакты';
         } else {
             $this->name = 'Создать';
         }
         return [
-            'news' => $el ?? null
+            'contact' => $el ?? null
         ];
     }
 
@@ -50,14 +52,9 @@ class NewsEditScreen extends Screen
                 ->method('createOrUpdate')
                 ->canSee($this->exists),
 
-            Button::make('Удалить')
-                ->icon('trash')
-                ->method('remove')
-                ->canSee($this->exists),
-
             Link::make('Назад')
                 ->icon('arrow-left')
-                ->route('platform.news.list')
+                ->route('platform.contact.list')
         ];
     }
 
@@ -66,52 +63,49 @@ class NewsEditScreen extends Screen
         return [
             Layout::rows([
                 Group::make([
-                    Input::make('news.name')
-                        ->title('Название')
+                    Input::make('contact.address')
+                        ->title('Адрес')
                         ->required(),
-                    Input::make('news.sort')
-                        ->title('Сортировка')
-                        ->type('number')
+                    Input::make('contact.mail')
+                        ->title('Почта')
                         ->required(),
-                    Input::make('news.id')
+                    Input::make('contact.phone')
+                        ->title('Телефон')
+                        ->required(),
+                    Input::make('contact.id')
                         ->type('hidden'),
                 ]),
-            ]),
+            ])->title('Основная информация'),
             Layout::rows([
                 Group::make([
-                    Quill::make('news.text')
-                        ->title('Описание')
-                        ->required(),
-                    Picture::make('news.image')
-                        ->title('Картинка')
-                        ->required(),
+                    Input::make('contact.work_hours')
+                        ->title('График работы'),
+                    Input::make('contact.shipping_hours')
+                        ->title('График отгрузки'),
                 ]),
-            ]),
+            ])->title('Время работы'),
+            Layout::rows([
+                Group::make([
+                    Input::make('contact.map_x')
+                        ->title('Значение X'),
+                    Input::make('contact.map_y')
+                        ->title('Значение Y'),
+                ]),
+            ])->title('Карта'),
         ];
     }
 
-    public function createOrUpdate(News $el, Request $request)
+    public function createOrUpdate(Contact $el, Request $request)
     {
-        $requestAr = $request->get('news');
-        if ($requestAr['image']) {
-            $requestAr['image'] = str_replace($_SERVER['APP_URL'], '', $requestAr['image']);
-        }
+        $requestAr = $request->get('contact');
         if ($requestAr['id']) {
-            $el = News::find($requestAr['id']);
+            $el = Contact::find($requestAr['id']);
             $el->update($requestAr);
         } else {
-            News::create($requestAr);
+            Contact::create($requestAr);
         }
 
         Alert::info('You have successfully created / updated.');
-        return redirect()->route('platform.news.list');
-    }
-
-    public function remove($id)
-    {
-        $el = News::find($id);
-        $el->delete();
-        Alert::info('You have successfully deleted.');
-        return redirect()->route('platform.news.list');
+        return redirect()->route('platform.contact.list');
     }
 }

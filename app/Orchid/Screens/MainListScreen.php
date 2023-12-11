@@ -16,8 +16,9 @@ class MainListScreen extends Screen
 
     public function query($id = null): array
     {
+        $this->exist = Main::first();
         return [
-            'main' => Main::filters()->defaultSort('id', 'desc')->paginate()
+            'mains' => Main::filters()->defaultSort('id', 'desc')->paginate()
         ];
     }
 

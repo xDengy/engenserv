@@ -10,14 +10,12 @@ use Orchid\Screen\Screen;
 class MenuListScreen extends Screen
 {
     public $name = 'Меню';
-    public $folder = null;
     public $exist = false;
-    public $parent = null;
 
     public function query($id = null): array
     {
         return [
-            'menu' => Menu::filters()->defaultSort('id', 'desc')->paginate()
+            'menus' => Menu::filters()->defaultSort('id', 'desc')->paginate()
         ];
     }
 

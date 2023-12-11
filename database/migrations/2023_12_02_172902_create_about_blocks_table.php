@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('text');
-            $table->string('link');
-            $table->char('use_advantages');
+            $table->string('link')->nullable();
+            $table->char('use_advantages')->nullable();
             $table->integer('sort');
             $table->timestamps();
         });

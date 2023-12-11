@@ -17,9 +17,11 @@ class Partner extends Model
         'name',
         'text',
         'image',
+        'sort',
     ];
 
     protected $allowedSorts = [
         'name',
+        'sort',
     ];
 }

@@ -30,7 +30,7 @@ class MainEditScreen extends Screen
             $this->exists = $el->exists;
         }
         if($this->exists){
-            $this->name = $el->name;
+            $this->name = 'Изменить баннер';
         } else {
             $this->name = 'Создать';
         }
@@ -79,6 +79,9 @@ class MainEditScreen extends Screen
     public function createOrUpdate(Main $el, Request $request)
     {
         $requestAr = $request->get('main');
+        if ($requestAr['image']) {
+            $requestAr['image'] = str_replace($_SERVER['APP_URL'], '', $requestAr['image']);
+        }
         if ($requestAr['id']) {
             $el = Main::find($requestAr['id']);
             $el->update($requestAr);

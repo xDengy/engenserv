@@ -6,6 +6,7 @@ use App\Models\About;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Code;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
@@ -72,15 +73,13 @@ class AboutEditScreen extends Screen
                         ->title('Название')
                         ->required(),
                     Input::make('about.link')
-                        ->title('Ссылка')
-                        ->required(),
+                        ->title('Ссылка'),
                     Input::make('about.sort')
                         ->title('Сортировка')
                         ->type('number')
                         ->required(),
-                    Input::make('about.use_advantages')
-                        ->title('Выводить преимущества')
-                        ->type('checkbox'),
+                    CheckBox::make('about.use_advantages')
+                        ->title('Выводить преимущества'),
                     Input::make('about.id')
                         ->type('hidden'),
                 ]),

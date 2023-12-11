@@ -17,7 +17,7 @@ class AboutListLayout extends Table
                 return Link::make($el->id)->route('platform.about.editItem', $el);
             }),
             TD::make('name', 'Название'),
-            TD::make('sort', 'Сортировка'),
+            TD::make('sort', 'Сортировка')->sort(),
         ];
     }
 }

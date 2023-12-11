@@ -2,29 +2,31 @@
 
 namespace App\Orchid\Screens;
 
-use App\Models\News;
+use App\Models\Partner;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\Code;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Picture;
 use Orchid\Screen\Fields\Quill;
+use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Layout;
 
-class NewsEditScreen extends Screen
+class PartnerEditScreen extends Screen
 {
 
-    public $name = 'News';
+    public $name = 'Partner';
     public $exists = false;
     public $parent = null;
 
     public function query($id = null): array
     {
         if ($id) {
-            $el = News::find($id);
+            $el = Partner::find($id);
             $this->exists = $el->exists;
         }
         if($this->exists){
@@ -33,7 +35,7 @@ class NewsEditScreen extends Screen
             $this->name = 'Создать';
         }
         return [
-            'news' => $el ?? null
+            'partner' => $el ?? null
         ];
     }
 
@@ -57,7 +59,7 @@ class NewsEditScreen extends Screen
 
             Link::make('Назад')
                 ->icon('arrow-left')
-                ->route('platform.news.list')
+                ->route('platform.partner.list')
         ];
     }
 
@@ -66,23 +68,23 @@ class NewsEditScreen extends Screen
         return [
             Layout::rows([
                 Group::make([
-                    Input::make('news.name')
+                    Input::make('partner.name')
                         ->title('Название')
                         ->required(),
-                    Input::make('news.sort')
+                    Input::make('partner.sort')
                         ->title('Сортировка')
                         ->type('number')
                         ->required(),
-                    Input::make('news.id')
+                    Input::make('partner.id')
                         ->type('hidden'),
                 ]),
             ]),
             Layout::rows([
                 Group::make([
-                    Quill::make('news.text')
+                    Quill::make('partner.text')
                         ->title('Описание')
                         ->required(),
-                    Picture::make('news.image')
+                    Picture::make('partner.image')
                         ->title('Картинка')
                         ->required(),
                 ]),
@@ -90,28 +92,28 @@ class NewsEditScreen extends Screen
         ];
     }
 
-    public function createOrUpdate(News $el, Request $request)
+    public function createOrUpdate(Partner $el, Request $request)
     {
-        $requestAr = $request->get('news');
+        $requestAr = $request->get('partner');
         if ($requestAr['image']) {
             $requestAr['image'] = str_replace($_SERVER['APP_URL'], '', $requestAr['image']);
         }
         if ($requestAr['id']) {
-            $el = News::find($requestAr['id']);
+            $el = Partner::find($requestAr['id']);
             $el->update($requestAr);
         } else {
-            News::create($requestAr);
+            Partner::create($requestAr);
         }
 
         Alert::info('You have successfully created / updated.');
-        return redirect()->route('platform.news.list');
+        return redirect()->route('platform.partner.list');
     }
 
     public function remove($id)
     {
-        $el = News::find($id);
+        $el = Partner::find($id);
         $el->delete();
         Alert::info('You have successfully deleted.');
-        return redirect()->route('platform.news.list');
+        return redirect()->route('platform.partner.list');
     }
 }

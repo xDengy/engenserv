@@ -35,6 +35,10 @@ use App\Orchid\Screens\NewsListScreen;
 use App\Orchid\Screens\NewsEditScreen;
 use App\Orchid\Screens\AboutListScreen;
 use App\Orchid\Screens\AboutEditScreen;
+use App\Orchid\Screens\PartnerListScreen;
+use App\Orchid\Screens\PartnerEditScreen;
+use App\Orchid\Screens\ContactListScreen;
+use App\Orchid\Screens\ContactEditScreen;
 /*
 |--------------------------------------------------------------------------
 | Dashboard Routes
@@ -149,4 +153,10 @@ Route::screen('about', AboutListScreen::class)->name('platform.about.list');
 Route::screen('about/{id}', AboutEditScreen::class)->name('platform.about.editItem');
 Route::screen('aboutEdit', AboutEditScreen::class)->name('platform.about.edit');
 
+Route::screen('partner', PartnerListScreen::class)->name('platform.partner.list');
+Route::screen('partner/{id}', PartnerEditScreen::class)->name('platform.partner.editItem');
+Route::screen('partnerEdit', PartnerEditScreen::class)->name('platform.partner.edit');
 
+Route::screen('contact', ContactListScreen::class)->name('platform.contact.list');
+Route::screen('contact/{id}', ContactEditScreen::class)->name('platform.contact.editItem');
+Route::screen('contactEdit', ContactEditScreen::class)->name('platform.contact.edit');

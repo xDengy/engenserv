@@ -43,14 +43,20 @@ class PlatformProvider extends OrchidServiceProvider
             Menu::make('Главная баннер')
                 ->route('platform.mainBanner.list'),
 
+            Menu::make('О компании на главной')
+                ->route('platform.about.list'),
+
             Menu::make('Каталог')
                 ->route('platform.folder.list'),
 
             Menu::make('Новости')
                 ->route('platform.news.list'),
 
-            Menu::make('О компании')
-                ->route('platform.about.list'),
+            Menu::make('Партнеры')
+                ->route('platform.partner.list'),
+
+            Menu::make('Контакты')
+                ->route('platform.contact.list'),
 
             Menu::make(__('Users'))
                 ->icon('bs.people')

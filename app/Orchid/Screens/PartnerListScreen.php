@@ -2,22 +2,20 @@
 
 namespace App\Orchid\Screens;
 
-use App\Models\About;
-use App\Orchid\Layouts\AboutListLayout;
+use App\Models\Partner;
+use App\Orchid\Layouts\PartnerListLayout;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 
-class AboutListScreen extends Screen
+class PartnerListScreen extends Screen
 {
-    public $name = 'О компании';
-    public $folder = null;
+    public $name = 'Партнеры';
     public $exist = false;
-    public $parent = null;
 
     public function query($id = null): array
     {
         return [
-            'abouts' => About::filters()->defaultSort('id', 'desc')->paginate()
+            'partners' => Partner::filters()->defaultSort('id', 'desc')->paginate()
         ];
     }
 
@@ -26,7 +24,7 @@ class AboutListScreen extends Screen
         $commandAr = [];
         $commandAr[] = Link::make('Добавить элемент')
             ->icon('plus')
-            ->route('platform.about.edit');
+            ->route('platform.partner.edit');
 
         return $commandAr;
     }
@@ -34,7 +32,7 @@ class AboutListScreen extends Screen
     public function layout(): array
     {
         return [
-            AboutListLayout::class
+            PartnerListLayout::class
         ];
     }
 }

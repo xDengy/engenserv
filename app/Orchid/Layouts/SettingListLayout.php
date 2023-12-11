@@ -14,7 +14,7 @@ class SettingListLayout extends Table
     {
         return [
             TD::make('id', 'ID')->render(function (Setting $el) {
-                return Link::make($el->id)->route('platform.setting.editItem', $el);
+                return Link::make('Изменить настройки')->route('platform.setting.editItem', $el);
             })
         ];
     }

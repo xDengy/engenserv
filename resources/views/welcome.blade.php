@@ -13,12 +13,14 @@
 
 @section('content')
     <section class="banner">
-        <img class="banner-img" src="{{asset('/images/banner.png')}}" alt="">
+        <img class="banner-img" src="{{$main->image}}" alt="">
         <div class="banner-shadow"></div>
         <div class="container">
             <div class="banner-block">
                 <div class="banner-block-text">
-                    Ваш надёжный партнёр <br> <b>с 1995 года</b>
+                    @php
+                        echo htmlspecialchars_decode($main->text);
+                    @endphp
                 </div>
                 <a href="" class="banner-block-btn btn btn--orange btn--round">
                     Перейти в каталог
