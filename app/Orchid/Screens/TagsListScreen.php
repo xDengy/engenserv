@@ -2,14 +2,14 @@
 
 namespace App\Orchid\Screens;
 
-use App\Models\News;
-use App\Orchid\Layouts\NewsListLayout;
+use App\Models\Tag;
+use App\Orchid\Layouts\TagsListLayout;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 
-class NewsListScreen extends Screen
+class TagsListScreen extends Screen
 {
-    public $name = 'Новости';
+    public $name = 'Тэги';
     public $folder = null;
     public $exist = false;
     public $parent = null;
@@ -17,7 +17,7 @@ class NewsListScreen extends Screen
     public function query($id = null): array
     {
         return [
-            'news' => News::filters()->defaultSort('id', 'desc')->paginate()
+            'tags' => Tag::filters()->defaultSort('id', 'desc')->paginate()
         ];
     }
 
@@ -25,9 +25,6 @@ class NewsListScreen extends Screen
     {
         $commandAr = [];
         $commandAr[] = Link::make('Добавить элемент')
-            ->icon('plus')
-            ->route('platform.news.edit');
-        $commandAr[] = Link::make('Добавить тэг')
             ->icon('plus')
             ->route('platform.tags.edit');
 
@@ -37,7 +34,7 @@ class NewsListScreen extends Screen
     public function layout(): array
     {
         return [
-            NewsListLayout::class
+            TagsListLayout::class
         ];
     }
 }

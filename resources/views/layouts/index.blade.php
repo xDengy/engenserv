@@ -23,12 +23,6 @@
                         @php
                             echo htmlspecialchars_decode($settings->logotext);
                         @endphp
-                        <div class="logo-text-main">
-                            Инженерсервис
-                        </div>
-                        <div class="logo-text-sub">
-                            Группа компаний производителей
-                        </div>
                     </div>
                 </a>
                 <div class="info">
@@ -74,12 +68,6 @@
                             @php
                                 echo htmlspecialchars_decode($settings->logotext);
                             @endphp
-                            <div class="logo-text-main">
-                                Инженерсервис
-                            </div>
-                            <div class="logo-text-sub">
-                                Группа компаний производителей
-                            </div>
                         </div>
                     </a>
                     <div class="info">

@@ -28,19 +28,17 @@ header {
     display: flex;
     flex-direction: column;
     color: var(--whiteColor);
-}
-
-.logo-text-main {
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 3rem;
-}
-
-.logo-text-sub {
     font-size: 1.3rem;
     font-weight: 300;
     letter-spacing: 0.1px;
-    margin-top: 5px;
+}
+
+.logo-text b,
+.logo-text strong {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 3rem;
+    margin-bottom: 5px;
 }
 
 .info {

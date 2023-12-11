@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('text');
             $table->string('link')->nullable();
+            $table->string('link_text')->nullable();
             $table->char('use_advantages')->nullable();
             $table->integer('sort');
             $table->timestamps();

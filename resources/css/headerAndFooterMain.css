@@ -23,23 +23,21 @@ header {
     display: flex;
     flex-direction: column;
     color: var(--whiteColor);
+    font-size: 1.3rem;
+    font-weight: 300;
+    letter-spacing: 0.1px;
 }
 
 header .logo-text {
     color: var(--blackColor);
 }
 
-.logo-text-main {
+.logo-text b,
+.logo-text strong {
     font-size: 3rem;
     font-weight: 700;
     line-height: 3rem;
-}
-
-.logo-text-sub {
-    font-size: 1.3rem;
-    font-weight: 300;
-    letter-spacing: 0.1px;
-    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .info {

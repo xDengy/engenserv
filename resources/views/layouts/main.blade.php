@@ -23,12 +23,6 @@
                         @php
                             echo htmlspecialchars_decode($settings->logotext);
                         @endphp
-                        <div class="logo-text-main">
-                            Инженерсервис
-                        </div>
-                        <div class="logo-text-sub">
-                            Группа компаний производителей
-                        </div>
                     </div>
                 </a>
                 <div class="info">
@@ -60,18 +54,17 @@
                     </div>
                 </div>
             </div>
-            <nav class="menu">
-                <div class="container">
-                    <div class="menu-wrapper">
-                        <a href="">Каталог</a>
-                        <a href="">Новинки</a>
-                        <a href="">Новости</a>
-                        <a href="">Наши партнёры</a>
-                        <a href="">Контакты</a>
-                        <a href="">О компании</a>
+            @if(!empty($menu))
+                <nav class="menu">
+                    <div class="container">
+                        <div class="menu-wrapper">
+                            @foreach($menu as $link)
+                                <a href="{{$link->link}}">{{$link->name}}</a>
+                            @endforeach
+                        </div>
                     </div>
-                </div>
-            </nav>
+                </nav>
+            @endif
         </header>
         @yield('content')
         <footer>
@@ -85,12 +78,6 @@
                             @php
                                 echo htmlspecialchars_decode($settings->logotext);
                             @endphp
-                            <div class="logo-text-main">
-                                Инженерсервис
-                            </div>
-                            <div class="logo-text-sub">
-                                Группа компаний производителей
-                            </div>
                         </div>
                     </a>
                     <div class="info">
@@ -106,14 +93,13 @@
                         </div>
                     </div>
                 </div>
-                <nav class="menu">
-                    <a href="">Каталог</a>
-                    <a href="">Новинки</a>
-                    <a href="">Новости</a>
-                    <a href="">Наши партнёры</a>
-                    <a href="">Контакты</a>
-                    <a href="">О компании</a>
-                </nav>
+                @if(!empty($menu))
+                    <nav class="menu">
+                        @foreach($menu as $link)
+                            <a href="{{$link->link}}">{{$link->name}}</a>
+                        @endforeach
+                    </nav>
+                @endif
                 <div class="copyright-text">
                     2014 © ООО "Инженерсервис".
                     <br>

@@ -74,6 +74,8 @@ class AboutEditScreen extends Screen
                         ->required(),
                     Input::make('about.link')
                         ->title('Ссылка'),
+                    Input::make('about.link_text')
+                        ->title('Текст ссылки'),
                     Input::make('about.sort')
                         ->title('Сортировка')
                         ->type('number')

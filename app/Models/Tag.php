@@ -9,21 +9,12 @@ use Orchid\Filters\Filterable;
 use Orchid\Metrics\Chartable;
 use Orchid\Screen\AsSource;
 
-class About extends Model
+class Tag extends Model
 {
     use HasFactory, AsSource, Attachable, Filterable, Chartable;
-    protected $table = 'about_blocks';
+
     protected $fillable = [
         'name',
-        'text',
-        'link',
-        'link_text',
-        'use_advantages',
-        'sort',
-    ];
-
-    protected $allowedSorts = [
-        'name',
-        'sort',
+        'color',
     ];
 }

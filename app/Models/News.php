@@ -17,6 +17,7 @@ class News extends Model
         'name',
         'text',
         'image',
+        'tag_id',
         'sort',
     ];
 
@@ -24,4 +25,9 @@ class News extends Model
         'name',
         'sort',
     ];
+
+    public function tags(){
+        return $this->hasOne(Tag::class, 'id', 'tag_id');
+    }
+
 }
