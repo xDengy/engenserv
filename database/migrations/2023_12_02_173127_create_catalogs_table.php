@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('scheme')->nullable();
             $table->char('is_folder');
             $table->foreignId('folder_id')->nullable();
+            $table->integer('sort');
             $table->timestamps();
         });
     }

@@ -32,45 +32,23 @@
                 <b>Группа компаний “Инженерсервис”</b> - это Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
             </div>
             <div class="partners">
-                <div class="partner">
-                    <div class="partner-img">
-                        <img src="{{asset('/images/empty.png')}}" alt="">
-                    </div>
-                    <div class="partner-text-wrap">
-                        <div class="partner-title">
-                            Lorem ipsum dolor
+                @foreach($partners as $partner)
+                    <div class="partner">
+                        <div class="partner-img">
+                            <img src="{{$partner->image}}" alt="">
                         </div>
-                        <div class="partner-desc">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
-                        </div>
-                    </div>
-                </div>
-                <div class="partner">
-                    <div class="partner-img">
-                        <img src="{{asset('/images/empty.png')}}" alt="">
-                    </div>
-                    <div class="partner-text-wrap">
-                        <div class="partner-title">
-                            Lorem ipsum dolor
-                        </div>
-                        <div class="partner-desc">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
+                        <div class="partner-text-wrap">
+                            <div class="partner-title">
+                                {{$partner->name}}
+                            </div>
+                            <div class="partner-desc">
+                                @php
+                                    echo htmlspecialchars_decode($partner->text)
+                                @endphp
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="partner">
-                    <div class="partner-img">
-                        <img src="{{asset('/images/empty.png')}}" alt="">
-                    </div>
-                    <div class="partner-text-wrap">
-                        <div class="partner-title">
-                            Lorem ipsum dolor
-                        </div>
-                        <div class="partner-desc">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="form">
                 <div class="form-wrapper">

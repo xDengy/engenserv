@@ -103,9 +103,6 @@ class NewsEditScreen extends Screen
     public function createOrUpdate(News $el, Request $request)
     {
         $requestAr = $request->get('news');
-        if ($requestAr['image']) {
-            $requestAr['image'] = str_replace($_SERVER['APP_URL'], '', $requestAr['image']);
-        }
         if ($requestAr['id']) {
             $el = News::find($requestAr['id']);
             $el->update($requestAr);

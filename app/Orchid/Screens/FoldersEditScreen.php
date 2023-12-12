@@ -19,7 +19,7 @@ use Orchid\Support\Facades\Layout;
 class FoldersEditScreen extends Screen
 {
 
-    public $name = 'Catalog';
+    public $name = 'Раздел';
     public $exists = false;
     public $parent = null;
 
@@ -74,10 +74,14 @@ class FoldersEditScreen extends Screen
                     Input::make('folder.is_folder')
                         ->type('hidden')
                         ->value(1),
+                    Input::make('folder.sort')
+                        ->title('Сортировка')
+                        ->type('number')
+                        ->required(),
                     Input::make('folder.id')
                         ->type('hidden'),
                 ]),
-            ])->title('Catalog'),
+            ])->title('Раздел'),
         ];
     }
 

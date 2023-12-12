@@ -61,8 +61,12 @@ class FoldersEditInSectScreen extends Screen
                     Input::make('folder.is_folder')
                         ->type('hidden')
                         ->value(1),
+                    Input::make('folder.sort')
+                        ->title('Сортировка')
+                        ->type('number')
+                        ->required(),
                 ]),
-            ])->title('Catalog'),
+            ])->title('Раздел'),
         ];
     }
 

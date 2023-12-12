@@ -92,9 +92,6 @@ class SettingEditScreen extends Screen
     public function createOrUpdate(Setting $el, Request $request)
     {
         $requestAr = $request->get('setting');
-        if ($requestAr['logo']) {
-            $requestAr['logo'] = str_replace($_SERVER['APP_URL'], '', $requestAr['logo']);
-        }
         if ($requestAr['id']) {
             $el = Setting::find($requestAr['id']);
             $el->update($requestAr);

@@ -95,9 +95,6 @@ class PartnerEditScreen extends Screen
     public function createOrUpdate(Partner $el, Request $request)
     {
         $requestAr = $request->get('partner');
-        if ($requestAr['image']) {
-            $requestAr['image'] = str_replace($_SERVER['APP_URL'], '', $requestAr['image']);
-        }
         if ($requestAr['id']) {
             $el = Partner::find($requestAr['id']);
             $el->update($requestAr);

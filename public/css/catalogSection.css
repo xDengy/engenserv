@@ -31,7 +31,7 @@
     transition: 0.25s ease-in-out;
 }
 
-.section-item.active .section-wrapper {
+.section-item.active > .section-wrapper {
     max-height: 1000px;
     padding-top: 30px;
 }
@@ -62,7 +62,7 @@
     transition: 0.25s ease-in-out;
 }
 
-.section-item.active .section-arrow {
+.section-item.active > .section-arrow {
     opacity: 0.5;
     transform: rotate(-180deg);
 }

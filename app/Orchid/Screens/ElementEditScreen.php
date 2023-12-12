@@ -9,6 +9,7 @@ use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Quill;
+use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Layout;
@@ -68,11 +69,14 @@ class ElementEditScreen extends Screen
                 Group::make([
                     Input::make('element.name')
                         ->title('Название')
-                        ->placeholder('Название')
                         ->required(),
                     Input::make('element.price')
                         ->title('Цена')
-                        ->placeholder('Цена')
+                        ->type('number')
+                        ->required(),
+                    Input::make('element.sort')
+                        ->title('Сортировка')
+                        ->type('number')
                         ->required(),
                     Input::make('element.is_folder')
                         ->type('hidden')
@@ -85,16 +89,21 @@ class ElementEditScreen extends Screen
                 Group::make([
                     Quill::make('element.text')
                         ->title('Описание товара')
-                        ->placeholder('Описание товара')
                         ->required(),
                     Quill::make('element.chars')
-                        ->title('Характеристики')
-                        ->placeholder('Характеристики'),
+                        ->title('Характеристики'),
                     Quill::make('element.scheme')
-                        ->title('Схема')
-                        ->placeholder('Схема'),
+                        ->title('Схема'),
                 ]),
             ])->title('Описание'),
+            Layout::rows([
+                Group::make([
+                    Upload::make('element.attachment')
+                        ->title('Фотографии')
+                        ->acceptedFiles('image/*')
+                        ->groups('catalog'),
+                ]),
+            ]),
         ];
     }
 
@@ -103,6 +112,10 @@ class ElementEditScreen extends Screen
         $requestAr = $request->get('element');
         $el = Catalog::find($requestAr['id']);
         $el->update($requestAr);
+
+        $el->attachment()->syncWithoutDetaching(
+            $request->input('element.attachment', [])
+        );
 
         Alert::info('You have successfully created / updated.');
         return redirect()->route('platform.folder.list', $el ? $el->folder_id : null);

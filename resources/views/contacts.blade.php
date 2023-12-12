@@ -30,7 +30,7 @@
                         Адрес:
                     </div>
                     <div class="info-value">
-                        111141, г. Москва, ул. Кусковская, д. 20, офис А-721 (7 этаж)
+                        {{$contact->address}}
                     </div>
                 </div>
                 <div class="contacts-item">
@@ -38,7 +38,7 @@
                         Эл.почта:
                     </div>
                     <div class="info-value">
-                        email@adress.com
+                        {{$contact->mail}}
                     </div>
                 </div>
                 <div class="contacts-item">
@@ -46,7 +46,7 @@
                         Мобильный телефон:
                     </div>
                     <div class="info-value">
-                        +7 (495) 730-41-55
+                        {{$contact->phone}}
                     </div>
                 </div>
                 <div class="contacts-item">
@@ -54,7 +54,7 @@
                         График работы:
                     </div>
                     <div class="info-value">
-                        Пн-Чт  с 10:00 до 17:00. Пт с 10:00 до 15:00
+                        {{$contact->work_hours}}
                     </div>
                 </div>
                 <div class="contacts-item">
@@ -62,7 +62,7 @@
                         График отгрузки:
                     </div>
                     <div class="info-value">
-                        Пн-Пт с 10:00 до 15:00
+                        {{$contact->shipping_hours}}
                     </div>
                 </div>
             </div>
@@ -70,8 +70,6 @@
 
             </div>
             <script>
-                initMap();
-
                 async function initMap() {
                     // Промис `ymaps3.ready` будет зарезолвлен, когда загрузятся все компоненты основного модуля API
                     await ymaps3.ready;
@@ -89,7 +87,7 @@
                         {
                             location: {
                                 // Координаты центра карты
-                                center: [37.588144, 55.733842],
+                                center: [{{$contact->map_x}}, {{$contact->map_y}}],
 
                                 // Уровень масштабирования
                                 zoom: 10
@@ -103,10 +101,11 @@
                     const content = document.createElement('div');
                     content.classList.add('test');
                     map.addChild(new YMapMarker({
-                        coordinates: [37.588144, 55.733842],
+                        coordinates: [{{$contact->map_x}}, {{$contact->map_y}}],
                         draggable: false
                     }, content));
                 }
+                initMap();
             </script>
         </div>
     </section>
