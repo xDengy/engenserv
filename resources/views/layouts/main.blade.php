@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{{ asset('css/headerAndFooterMain.css') }}" media="screen">
         <link rel="stylesheet" href="{{ asset('css/normalize.css') }}" media="screen">
         @yield('seo')
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>

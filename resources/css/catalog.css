@@ -42,6 +42,7 @@ CATALOG
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    color: var(--blackColor);
 }
 
 .selected-value {

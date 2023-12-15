@@ -4,6 +4,7 @@ namespace App\Orchid\Screens;
 
 use App\Models\Catalog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Group;
@@ -19,9 +20,10 @@ class FoldersEditInSectScreen extends Screen
     public $exists = false;
     public $parent = null;
 
-    public function query(Catalog $el): array
+    public function query($id): array
     {
         $this->exists = false;
+        $el = Catalog::find($id);
         $this->parent = $el;
         if($this->exists){
             $this->name = $el->name;;
@@ -72,7 +74,10 @@ class FoldersEditInSectScreen extends Screen
 
     public function createOrUpdate(Catalog $el, Request $request)
     {
-        Catalog::create($request->get('folder'));
+        $requestAr = $request->get('folder');
+        $requestAr['new'] = 0;
+        $requestAr['code'] = Str::slug($requestAr['name']);
+        Catalog::create($requestAr);
 
         Alert::info('You have successfully created / updated.');
         return redirect()->route('platform.folder.list', $el->id);

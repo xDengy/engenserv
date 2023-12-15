@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('catalogs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('code');
             $table->string('price')->nullable();
             $table->text('text')->nullable();
             $table->text('chars')->nullable();
             $table->text('scheme')->nullable();
-            $table->char('is_folder');
+            $table->char('new', 1);
+            $table->char('is_folder', 1);
             $table->foreignId('folder_id')->nullable();
             $table->integer('sort');
             $table->timestamps();

@@ -70,6 +70,7 @@
 
             </div>
             <script>
+                initMap();
                 async function initMap() {
                     // Промис `ymaps3.ready` будет зарезолвлен, когда загрузятся все компоненты основного модуля API
                     await ymaps3.ready;
@@ -105,7 +106,6 @@
                         draggable: false
                     }, content));
                 }
-                initMap();
             </script>
         </div>
     </section>

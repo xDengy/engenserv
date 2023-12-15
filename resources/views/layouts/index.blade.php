@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}" media="screen">
         <link rel="stylesheet" href="{{ asset('css/headerAndFooter.css') }}" media="screen">
         <link rel="stylesheet" href="{{ asset('css/normalize.css') }}" media="screen">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         @yield('seo')
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

@@ -23,6 +23,8 @@ class Catalog extends Model
         'is_folder',
         'folder_id',
         'sort',
+        'new',
+        'code',
     ];
 
     protected $allowedSorts = [

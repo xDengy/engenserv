@@ -4,8 +4,10 @@ namespace App\Orchid\Screens;
 
 use App\Models\Catalog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Quill;
@@ -87,6 +89,9 @@ class ElementEditScreen extends Screen
             ])->title('Товар'),
             Layout::rows([
                 Group::make([
+                    CheckBox::make('element.new')
+                        ->sendTrueOrFalse()
+                        ->title('Новинка'),
                     Quill::make('element.text')
                         ->title('Описание товара')
                         ->required(),
@@ -101,7 +106,8 @@ class ElementEditScreen extends Screen
                     Upload::make('element.attachment')
                         ->title('Фотографии')
                         ->acceptedFiles('image/*')
-                        ->groups('catalog'),
+                        ->groups('catalog')
+                        ->required(),
                 ]),
             ]),
         ];
@@ -110,6 +116,7 @@ class ElementEditScreen extends Screen
     public function createOrUpdate(Catalog $el, Request $request)
     {
         $requestAr = $request->get('element');
+        $requestAr['code'] = Str::slug($requestAr['name']);
         $el = Catalog::find($requestAr['id']);
         $el->update($requestAr);
 

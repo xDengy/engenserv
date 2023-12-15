@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [StaticController::class, 'welcome'])->name('home');
-Route::get('/catalog/', [StaticController::class, 'catalog'])->name('catalog');
+Route::get('/catalog/{code?}/', [StaticController::class, 'catalog'])->where('code', '.*')->name('catalog');
+Route::get('/novinki/', [StaticController::class, 'novinki'])->name('novinki');
 Route::get('/catalog/{code}/', [StaticController::class, 'catalogDetail'])->name('catalogDetail');
 Route::get('/partnership/', [StaticController::class, 'partnership'])->name('partnership');
 Route::get('/news/', [StaticController::class, 'news'])->name('news');

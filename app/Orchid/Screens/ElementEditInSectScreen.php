@@ -6,6 +6,7 @@ use App\Models\Catalog;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Quill;
@@ -13,6 +14,7 @@ use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Layout;
+use Illuminate\Support\Str;
 
 class ElementEditInSectScreen extends Screen
 {
@@ -70,6 +72,9 @@ class ElementEditInSectScreen extends Screen
             ])->title('Товар'),
             Layout::rows([
                 Group::make([
+                    CheckBox::make('element.new')
+                        ->sendTrueOrFalse()
+                        ->title('Новинка'),
                     Quill::make('element.text')
                         ->title('Описание товара')
                         ->required(),
@@ -84,7 +89,8 @@ class ElementEditInSectScreen extends Screen
                     Upload::make('element.attachment')
                         ->title('Фотографии')
                         ->acceptedFiles('image/*')
-                        ->groups('catalog'),
+                        ->groups('catalog')
+                        ->required(),
                 ]),
             ]),
         ];
@@ -93,6 +99,7 @@ class ElementEditInSectScreen extends Screen
     public function createOrUpdate(Catalog $el, Request $request)
     {
         $element = $request->get('element');
+        $element['code'] = Str::slug($element['name']);
         $el = Catalog::create($element);
 
         $el->attachment()->syncWithoutDetaching(
