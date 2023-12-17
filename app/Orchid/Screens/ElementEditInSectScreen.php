@@ -59,8 +59,7 @@ class ElementEditInSectScreen extends Screen
                         ->type('number')
                         ->required(),
                     Input::make('element.folder_id')
-                        ->type('hidden')
-                        ->value($this->parent->id),
+                        ->type('hidden'),
                     Input::make('element.sort')
                         ->title('Сортировка')
                         ->type('number')
@@ -93,20 +92,46 @@ class ElementEditInSectScreen extends Screen
                         ->required(),
                 ]),
             ]),
+            Layout::rows([
+                Group::make([
+                    Input::make('element.title')
+                        ->title('Title страницы'),
+                    Input::make('element.desc')
+                        ->title('Описание страницы'),
+                    Input::make('element.keywords')
+                        ->title('Ключевые слова страницы'),
+                    Input::make('element.h1')
+                        ->title('H1 страницы'),
+                ]),
+            ])->title('Описание страницы'),
         ];
     }
 
     public function createOrUpdate(Catalog $el, Request $request)
     {
-        $element = $request->get('element');
-        $element['code'] = Str::slug($element['name']);
-        $el = Catalog::create($element);
+        $requestAr = $request->get('element');
+        $requestAr['code'] = Str::slug($requestAr['name']);
+        $this->parent = Catalog::find($requestAr['folder_id']);
+        $requestAr['url'] = $this->parent->url . $requestAr['code'] . '/';
+        if (!$requestAr['title']) {
+            $requestAr['title'] = $requestAr['name'];
+        }
+        if (!$requestAr['desc']) {
+            $requestAr['desc'] = $requestAr['name'];
+        }
+        if (!$requestAr['keywords']) {
+            $requestAr['keywords'] = $requestAr['name'];
+        }
+        if (!$requestAr['h1']) {
+            $requestAr['h1'] = $requestAr['name'];
+        }
+        $el = Catalog::create($requestAr);
 
         $el->attachment()->syncWithoutDetaching(
             $request->input('element.attachment', [])
         );
 
         Alert::info('You have successfully created / updated.');
-        return redirect()->route('platform.folder.list', $element['folder_id']);
+        return redirect()->route('platform.folder.list', $requestAr['folder_id']);
     }
 }

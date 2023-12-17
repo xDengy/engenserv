@@ -25,6 +25,11 @@ class Catalog extends Model
         'sort',
         'new',
         'code',
+        'url',
+        'title',
+        'desc',
+        'keywords',
+        'h1',
     ];
 
     protected $allowedSorts = [
@@ -35,7 +40,7 @@ class Catalog extends Model
     ];
 
     public function folders() {
-        return $this->hasMany(Catalog::class)->where('folder_id', 'id');
+        return $this->hasMany(Catalog::class, 'folder_id')->where('is_folder', 1)->select('id');
     }
 
     public function photos()

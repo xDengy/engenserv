@@ -79,3 +79,7 @@ h1 {
     width: 10px;
     height: 10px;
 }
+
+.swiper-slide {
+    height: auto;
+}

@@ -12,6 +12,7 @@ use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Picture;
 use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Layout;
@@ -105,9 +106,14 @@ page_desc2
             ]),
             Layout::rows([
                 Group::make([
-                    Picture::make('page.image')
-                        ->title('Картинка')
-                        ->required(),
+                    Upload::make('page.attachment')
+                        ->title('Фотографии 1')
+                        ->acceptedFiles('image/*')
+                        ->groups('page1'),
+                    Upload::make('page.attachment')
+                        ->title('Фотографии 2')
+                        ->acceptedFiles('image/*')
+                        ->groups('page2'),
                 ]),
             ]),
         ];
@@ -120,8 +126,11 @@ page_desc2
             $el = Page::find($requestAr['id']);
             $el->update($requestAr);
         } else {
-            Page::create($requestAr);
+            $el = Page::create($requestAr);
         }
+        $el->attachment()->syncWithoutDetaching(
+            $request->input('page.attachment', [])
+        );
 
         Alert::info('You have successfully created / updated.');
         return redirect()->route('platform.pages.list');

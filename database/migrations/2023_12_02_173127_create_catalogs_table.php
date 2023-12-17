@@ -15,11 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('code');
+            $table->string('url');
             $table->string('price')->nullable();
             $table->text('text')->nullable();
             $table->text('chars')->nullable();
             $table->text('scheme')->nullable();
             $table->char('new', 1);
+            $table->string('title');
+            $table->string('desc');
+            $table->string('keywords');
+            $table->string('h1');
             $table->char('is_folder', 1);
             $table->foreignId('folder_id')->nullable();
             $table->integer('sort');

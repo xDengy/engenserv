@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
 @section('seo')
-    <title></title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    <title>{{$page->title}}</title>
+    <meta name="description" content="{{$page->desc}}">
+    <meta name="keywords" content="{{$page->keywords}}">
     <link rel="stylesheet" href="{{ asset('/css/cart.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/breadcrumbs.css') }}" media="screen">
 @endsection
@@ -15,18 +15,10 @@
 @section('content')
     <section class="cart-page">
         <div class="container">
-            @include('includes.breadcrumbs', ['links' => [
-                [
-                    'title' => 'Главная',
-                    'link' => '/',
-                ],
-                [
-                    'title' => 'Корзина',
-                ],
-            ]])
+            @include('includes.breadcrumbs', ['links' => $breadcrumbs])
             <div class="cart-container">
                 <h1>
-                    Корзина
+                    {{$page->h1}}
                 </h1>
                 <div class="cart-items">
                     <div class="cart-item">

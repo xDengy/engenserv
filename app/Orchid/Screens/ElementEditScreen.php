@@ -85,6 +85,8 @@ class ElementEditScreen extends Screen
                         ->value(0),
                     Input::make('element.id')
                         ->type('hidden'),
+                    Input::make('element.folder_id')
+                        ->type('hidden'),
                 ]),
             ])->title('Товар'),
             Layout::rows([
@@ -110,6 +112,18 @@ class ElementEditScreen extends Screen
                         ->required(),
                 ]),
             ]),
+            Layout::rows([
+                Group::make([
+                    Input::make('element.title')
+                        ->title('Title страницы'),
+                    Input::make('element.desc')
+                        ->title('Описание страницы'),
+                    Input::make('element.keywords')
+                        ->title('Ключевые слова страницы'),
+                    Input::make('element.h1')
+                        ->title('H1 страницы'),
+                ]),
+            ])->title('Описание страницы'),
         ];
     }
 
@@ -117,6 +131,20 @@ class ElementEditScreen extends Screen
     {
         $requestAr = $request->get('element');
         $requestAr['code'] = Str::slug($requestAr['name']);
+        $this->parent = Catalog::find($requestAr['folder_id']);
+        $requestAr['url'] = $this->parent->url . $requestAr['code'] . '/';
+        if (!$requestAr['title']) {
+            $requestAr['title'] = $requestAr['name'];
+        }
+        if (!$requestAr['desc']) {
+            $requestAr['desc'] = $requestAr['name'];
+        }
+        if (!$requestAr['keywords']) {
+            $requestAr['keywords'] = $requestAr['name'];
+        }
+        if (!$requestAr['h1']) {
+            $requestAr['h1'] = $requestAr['name'];
+        }
         $el = Catalog::find($requestAr['id']);
         $el->update($requestAr);
 

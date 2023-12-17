@@ -18,8 +18,8 @@ return new class extends Migration
             $table->text('desc');
             $table->text('keywords');
             $table->string('url');
-            $table->text('page_desc1');
-            $table->text('page_desc2');
+            $table->text('page_desc1')->nullable();
+            $table->text('page_desc2')->nullable();
             $table->timestamps();
         });
     }

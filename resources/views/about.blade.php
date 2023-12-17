@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
 @section('seo')
-    <title></title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    <title>{{$page->title}}</title>
+    <meta name="description" content="{{$page->desc}}">
+    <meta name="keywords" content="{{$page->keywords}}">
     <link rel="stylesheet" href="{{ asset('/css/about.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/breadcrumbs.css') }}" media="screen">
 @endsection
@@ -15,34 +15,24 @@
 @section('content')
     <section class="about">
         <div class="container">
-            @include('includes.breadcrumbs', ['links' => [
-                [
-                    'title' => 'Главная',
-                    'link' => '/',
-                ],
-                [
-                    'title' => 'О компании',
-                ],
-            ]])
+            @include('includes.breadcrumbs', ['links' => $breadcrumbs])
             <h1>
-                О компании
+                {{$page->h1}}
             </h1>
             <div class="desc-block">
                 <div class="page-desc">
-                    <b>Группа компаний “Инженерсервис”</b> - это Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                    @php
+                        echo htmlspecialchars_decode($page->page_desc1)
+                    @endphp
                 </div>
                 <div class="page-imgs">
                     <div class="swiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="{{asset('/images/empty.png')}}" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{asset('/images/empty.png')}}" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{asset('/images/empty.png')}}" alt="">
-                            </div>
+                            @foreach($page->photos1 as $attachment)
+                                <div class="swiper-slide">
+                                    <img src="{{$attachment->url}}" alt=""/>
+                                </div>
+                            @endforeach
                         </div>
                         <div class="swiper-pagination"></div>
                     </div>
@@ -158,21 +148,19 @@
                 <div class="page-imgs">
                     <div class="swiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="{{asset('/images/empty.png')}}" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{asset('/images/empty.png')}}" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{asset('/images/empty.png')}}" alt="">
-                            </div>
+                            @foreach($page->photos2 as $attachment)
+                                <div class="swiper-slide">
+                                    <img src="{{$attachment->url}}" alt=""/>
+                                </div>
+                            @endforeach
                         </div>
                         <div class="swiper-pagination"></div>
                     </div>
                 </div>
                 <div class="page-desc">
-                    <b>Группа компаний “Инженерсервис”</b> - это Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                    @php
+                        echo htmlspecialchars_decode($page->page_desc2)
+                    @endphp
                 </div>
             </div>
         </div>

@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
 @section('seo')
-    <title></title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    <title>{{$page->title}}</title>
+    <meta name="description" content="{{$page->desc}}">
+    <meta name="keywords" content="{{$page->keywords}}">
     <link rel="stylesheet" href="{{ asset('/css/catalogDetail.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/catalogSection.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/breadcrumbs.css') }}" media="screen">
@@ -20,19 +20,7 @@
             <div class="catalog-container">
                 @include('includes.sections', ['folders' => $folders])
                 <div class="catalog-block">
-                    @include('includes.breadcrumbs', ['links' => [
-                        [
-                            'title' => 'Главная',
-                            'link' => '/',
-                        ],
-                        [
-                            'title' => 'Каталог',
-                            'link' => '/catalog/',
-                        ],
-                        [
-                            'title' => 'Товар',
-                        ],
-                    ]])
+                    @include('includes.breadcrumbs', ['links' => $breadcrumbs])
                     <div class="catalog-detail">
                         <div class="catalog-info-wrapper">
                             <div class="img-wrapper">
@@ -59,7 +47,7 @@
                             <div class="detail-info">
                                 <div class="title-wrapper">
                                     <h1 class="detail-title">
-                                        {{$element->name}}
+                                        {{$page->h1}}
                                     </h1>
                                     @if ($element->new)
                                         <div class="detail-tag btn btn--orange">

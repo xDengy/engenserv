@@ -147,6 +147,7 @@ h1 {
 
 .min-swiper .swiper-slide {
     border: 1px solid var(--blackColor);
+    height: auto;
 }
 
 .max-swiper .swiper-slide img {

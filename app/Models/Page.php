@@ -23,14 +23,4 @@ class Page extends Model
         'page_desc1',
         'page_desc2',
     ];
-
-    public function photos1()
-    {
-        return $this->hasMany(Attachment::class)->where('group','page1');
-    }
-
-    public function photos2()
-    {
-        return $this->hasMany(Attachment::class)->where('group','page2');
-    }
 }

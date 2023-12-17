@@ -22,7 +22,6 @@ var swiper = new Swiper(".min-swiper", {
     loop: true,
     speed: 400,
     allowTouchMove: true,
-    autoHeight: true,
     watchSlidesProgress: true,
 });
 var swiper2 = new Swiper(".max-swiper", {

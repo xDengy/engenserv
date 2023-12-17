@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
 @section('seo')
-    <title></title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    <title>{{$page->title}}</title>
+    <meta name="description" content="{{$page->desc}}">
+    <meta name="keywords" content="{{$page->keywords}}">
     <link rel="stylesheet" href="{{ asset('/css/partnership.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/breadcrumbs.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/form.css') }}" media="screen">
@@ -16,20 +16,14 @@
 @section('content')
     <section class="partnership">
         <div class="container">
-            @include('includes.breadcrumbs', ['links' => [
-                [
-                    'title' => 'Главная',
-                    'link' => '/',
-                ],
-                [
-                    'title' => 'Наши партнёры',
-                ],
-            ]])
+            @include('includes.breadcrumbs', ['links' => $breadcrumbs])
             <h1>
-                Наши партнёры
+                {{$page->h1}}
             </h1>
             <div class="page-desc">
-                <b>Группа компаний “Инженерсервис”</b> - это Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                @php
+                    echo htmlspecialchars_decode($page->page_desc1)
+                @endphp
             </div>
             <div class="partners">
                 @foreach($partners as $partner)
@@ -74,7 +68,7 @@
                     </form>
                 </div>
                 <div class="form-img">
-                    <img src="{{asset('/images/empty.png')}}" alt="">
+                    <img src="{{$page->photos1->first()->url}}" alt="">
                 </div>
             </div>
         </div>

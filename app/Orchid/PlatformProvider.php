@@ -40,6 +40,9 @@ class PlatformProvider extends OrchidServiceProvider
             Menu::make('Меню')
                 ->route('platform.menu.list'),
 
+            Menu::make('Страницы')
+                ->route('platform.pages.list'),
+
             Menu::make('Главная баннер')
                 ->route('platform.mainBanner.list'),
 

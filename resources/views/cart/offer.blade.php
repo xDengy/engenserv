@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
 @section('seo')
-    <title></title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    <title>{{$page->title}}</title>
+    <meta name="description" content="{{$page->desc}}">
+    <meta name="keywords" content="{{$page->keywords}}">
     <link rel="stylesheet" href="{{ asset('/css/offer.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/form.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/breadcrumbs.css') }}" media="screen">
@@ -16,19 +16,7 @@
 @section('content')
     <section class="offer-page">
         <div class="container">
-            @include('includes.breadcrumbs', ['links' => [
-                [
-                    'title' => 'Главная',
-                    'link' => '/',
-                ],
-                [
-                    'title' => 'Корзина',
-                    'link' => '/cart/',
-                ],
-                [
-                    'title' => 'Оформление заказа',
-                ],
-            ]])
+            @include('includes.breadcrumbs', ['links' => $breadcrumbs])
             <div class="offer-container">
                 <div class="offer-form">
                     <div class="form-title">

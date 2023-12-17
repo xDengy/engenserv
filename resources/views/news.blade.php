@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
 @section('seo')
-    <title></title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    <title>{{$page->title}}</title>
+    <meta name="description" content="{{$page->desc}}">
+    <meta name="keywords" content="{{$page->keywords}}">
     <link rel="stylesheet" href="{{ asset('/css/news.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/nav.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/breadcrumbs.css') }}" media="screen">
@@ -13,17 +13,9 @@
     <section class="news">
         <div class="container">
             <div class="news-container">
-                @include('includes.breadcrumbs', ['links' => [
-                    [
-                        'title' => 'Главная',
-                        'link' => '/',
-                    ],
-                    [
-                        'title' => 'Новости',
-                    ],
-                ]])
+                @include('includes.breadcrumbs', ['links' => $breadcrumbs])
                 <h1>
-                    Новости
+                    {{$page->h1}}
                 </h1>
                 <div class="news-items">
                     @foreach($news as $newItem)

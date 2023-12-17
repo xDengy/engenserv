@@ -2,7 +2,7 @@
     @foreach($folders as $folder)
         <div class="section-item">
             <div class="section-info">
-                <a href="{{route('catalogDetail', $folder->code)}}" class="section-title">
+                <a href="{{route('catalogDetail', $folder->url)}}" class="section-title">
                     {{$folder->name}}
                 </a>
                 @if($folder->children)
@@ -16,7 +16,7 @@
             @if($folder->children)
                 <div class="section-wrapper">
                     @foreach($folder->children as $child)
-                        <a href="{{route('catalogDetail', $child->code)}}" class="subsection-item">
+                        <a href="{{route('catalogDetail', $child->url)}}" class="subsection-item">
                             {{$child->name}}
                         </a>
                     @endforeach

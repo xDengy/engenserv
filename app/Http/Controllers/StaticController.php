@@ -10,6 +10,7 @@ use App\Models\Menu;
 use App\Models\News;
 use App\Models\Partner;
 use App\Models\Setting;
+use App\Models\Page;
 use Illuminate\Http\Request;
 
 class StaticController extends Controller
@@ -22,9 +23,22 @@ class StaticController extends Controller
     public function __construct()
     {
         $this->data['settings'] = Setting::first();
-        $this->data['menu'] = Menu::orderBy($this->sort, $this->order)->get();
-//        $this->data['page'] = Page::where('url', $_SERVER['PATH_INFO'])->first();
-        if (in_array($_SERVER['PATH_INFO'], ['/catalog/', '/novinki/'])) {
+        $this->data['menu'] = Menu::orderBy('sort', 'ASC')->get();
+        $this->data['page'] = Page::where('url', $_SERVER['REDIRECT_URL'])->first() ?? new Page;
+        if ($this->data['page']) {
+            $this->data['page']->photos1 = $this->data['page']->attachment->where('group','page1');
+            $this->data['page']->photos2 = $this->data['page']->attachment->where('group','page2');
+        }
+        $this->data['breadcrumbs'] = [
+            [
+                'title' => 'Главная',
+                'link' => '/',
+            ],
+            [
+                'title' => $this->data['page']->h1,
+            ],
+        ];
+        if (in_array($_SERVER['REDIRECT_URL'], ['/catalog', '/novinki'])) {
             $sort = 'price';
             $order = 'ASC';
             if (isset($_GET['sort'])) {
@@ -86,21 +100,57 @@ class StaticController extends Controller
         $this->data['folders'] = $folders;
     }
 
+    public function getBreadcrumb($allCodes) {
+        $folderAr = [];
+        $allCodes = explode('/', $allCodes);
+        foreach ($allCodes as $code) {
+            $item = Catalog::where('code', $code)->first();
+            $folderAr[] = [
+                'title' => $item->name,
+                'link' => route('catalog', $item->url)
+            ];
+        }
+        return $folderAr;
+    }
+
     public function catalog($codes = null)
     {
         $this->getFoldersMenu();
-        $codes = explode('/', $codes);
-        $code = array_pop($codes);
-        $filter = ['is_folder' => 0];
-        if ($code) {
-            $el = Catalog::where('code', $code)->first();
+        $folderIds = [];
+        $this->data['breadcrumbs'] = [
+            [
+                'title' => 'Главная',
+                'link' => '/',
+            ],
+            [
+                'title' => 'Каталог',
+                'link' => '/catalog/',
+            ],
+        ];
+        if (in_array($_SERVER['REDIRECT_URL'], ['/catalog', '/novinki'])) {
+            unset($this->data['breadcrumbs'][1]['link']);
+        }
+        if ($codes) {
+            $el = Catalog::where('url', $codes . '/')->firstOrFail();
+            $this->data['page']->title = $el->title;
+            $this->data['page']->desc = $el->desc;
+            $this->data['page']->keywords = $el->keywords;
+            $this->data['page']->h1 = $el->h1;
+            if ($el->folder_id) {
+                $this->data['breadcrumbs'] = array_merge($this->data['breadcrumbs'], $this->getBreadcrumb($codes));
+            }
             if ($el->is_folder) {
-                $filter['folder_id'] = $el->id;
+                $folderIds = array_column($el->folders->toArray(), 'id');
+                $folderIds[] = $el->id;
             } else {
                 return $this->catalogDetail($el->code);
             }
         }
-        $elements = Catalog::where($filter)->orderBy($this->sort, $this->order)->paginate($this->paginateCatalog)->withQueryString();
+        $elemRes = Catalog::where('is_folder', 0);
+        if (!empty($folderIds)) {
+            $elemRes = $elemRes->whereIn('folder_id', $folderIds);
+        }
+        $elements = $elemRes->orderBy($this->sort, $this->order)->paginate($this->paginateCatalog)->withQueryString();
         $this->data['elements'] = $elements;
         return view('catalog.catalog', $this->data);
     }
@@ -115,7 +165,7 @@ class StaticController extends Controller
 
     public function catalogDetail($code)
     {
-        $element = Catalog::where('code', $code)->first();
+        $element = Catalog::where('code', $code)->firstOrFail();
         $this->data['element'] = $element;
         return view('catalog.catalogDetail', $this->data);
     }

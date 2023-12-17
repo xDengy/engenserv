@@ -41,6 +41,8 @@ use App\Orchid\Screens\ContactListScreen;
 use App\Orchid\Screens\ContactEditScreen;
 use App\Orchid\Screens\TagsEditScreen;
 use App\Orchid\Screens\TagsListScreen;
+use App\Orchid\Screens\PagesListScreen;
+use App\Orchid\Screens\PagesEditScreen;
 /*
 |--------------------------------------------------------------------------
 | Dashboard Routes
@@ -166,3 +168,7 @@ Route::screen('contactEdit', ContactEditScreen::class)->name('platform.contact.e
 Route::screen('tags', TagsListScreen::class)->name('platform.tags.list');
 Route::screen('tags/{id}', TagsEditScreen::class)->name('platform.tags.editItem');
 Route::screen('tagsEdit', TagsEditScreen::class)->name('platform.tags.edit');
+
+Route::screen('pages', PagesListScreen::class)->name('platform.pages.list');
+Route::screen('pages/{id}', PagesEditScreen::class)->name('platform.pages.editItem');
+Route::screen('pagesEdit', PagesEditScreen::class)->name('platform.pages.edit');

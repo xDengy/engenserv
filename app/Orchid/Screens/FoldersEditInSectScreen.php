@@ -58,8 +58,7 @@ class FoldersEditInSectScreen extends Screen
                         ->placeholder('Name')
                         ->required(),
                     Input::make('folder.folder_id')
-                        ->type('hidden')
-                        ->value($this->parent->id),
+                        ->type('hidden'),
                     Input::make('folder.is_folder')
                         ->type('hidden')
                         ->value(1),
@@ -69,6 +68,18 @@ class FoldersEditInSectScreen extends Screen
                         ->required(),
                 ]),
             ])->title('Раздел'),
+            Layout::rows([
+                Group::make([
+                    Input::make('folder.title')
+                        ->title('Title страницы'),
+                    Input::make('folder.desc')
+                        ->title('Описание страницы'),
+                    Input::make('folder.keywords')
+                        ->title('Ключевые слова страницы'),
+                    Input::make('folder.h1')
+                        ->title('H1 страницы'),
+                ]),
+            ])->title('Описание страницы'),
         ];
     }
 
@@ -77,6 +88,20 @@ class FoldersEditInSectScreen extends Screen
         $requestAr = $request->get('folder');
         $requestAr['new'] = 0;
         $requestAr['code'] = Str::slug($requestAr['name']);
+        $this->parent = Catalog::find($requestAr['folder_id']);
+        $requestAr['url'] = $this->parent->url . $requestAr['code'] . '/';
+        if (!$requestAr['title']) {
+            $requestAr['title'] = $requestAr['name'];
+        }
+        if (!$requestAr['desc']) {
+            $requestAr['desc'] = $requestAr['name'];
+        }
+        if (!$requestAr['keywords']) {
+            $requestAr['keywords'] = $requestAr['name'];
+        }
+        if (!$requestAr['h1']) {
+            $requestAr['h1'] = $requestAr['name'];
+        }
         Catalog::create($requestAr);
 
         Alert::info('You have successfully created / updated.');

@@ -1,28 +1,20 @@
 @extends('layouts.main')
 
 @section('seo')
-    <title></title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    <title>{{$page->title}}</title>
+    <meta name="description" content="{{$page->desc}}">
+    <meta name="keywords" content="{{$page->keywords}}">
     <link rel="stylesheet" href="{{ asset('/css/contacts.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/breadcrumbs.css') }}" media="screen">
-    <script src="https://api-maps.yandex.ru/v3/?apikey=e3f3c25e-14cc-4459-8370-771db2cb03eb&lang=ru_RU"></script>
+    <script src="https://api-maps.yandex.ru/v3/?apikey=5ef633e1-f97f-4f5f-a13e-533e152665d3&lang=ru_RU"></script>
 @endsection
 
 @section('content')
     <section class="contacts">
         <div class="container">
-            @include('includes.breadcrumbs', ['links' => [
-                [
-                    'title' => 'Главная',
-                    'link' => '/',
-                ],
-                [
-                    'title' => 'Контакты',
-                ],
-            ]])
+            @include('includes.breadcrumbs', ['links' => $breadcrumbs])
             <h1>
-                Контакты
+                {{$page->h1}}
             </h1>
             <div class="contacts-info">
                 <div class="contacts-item">
