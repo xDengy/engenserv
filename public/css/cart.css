@@ -72,6 +72,7 @@ h1 {
 
 .counter-minus, .counter-plus {
     cursor: pointer;
+    user-select: none;
 }
 
 .cart-info {

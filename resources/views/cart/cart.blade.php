@@ -21,84 +21,34 @@
                     {{$page->h1}}
                 </h1>
                 <div class="cart-items">
-                    <div class="cart-item">
-                        <div class="item-info">
-                            <div class="cart-img">
-                                <img src="{{asset('/images/catalog1.png')}}" alt="">
-                            </div>
-                            <div class="cart-title">
-                                МКЮР-301591.000
+                    @foreach($cart['items'] as $item)
+                        <div class="cart-item">
+                            <a href="{{$item->attributes->url}}" class="item-info">
+                                <div class="cart-img">
+                                    <img src="{{$item->attributes->img}}" alt="">
+                                </div>
+                                <div class="cart-title">
+                                    {{$item->name}}
+                                </div>
+                            </a>
+                            <div class="item-info">
+                                <div class="cart-counter" data-id="{{$item->id}}" data-url="{{route('cart.update')}}">
+                                    <div class="counter-minus">
+                                        -
+                                    </div>
+                                    <div class="counter-value">
+                                        {{$item->quantity}}
+                                    </div>
+                                    <div class="counter-plus">
+                                        +
+                                    </div>
+                                </div>
+                                <div class="cart-price">
+                                    {{$item->total}} ₽
+                                </div>
                             </div>
                         </div>
-                        <div class="item-info">
-                            <div class="cart-counter">
-                                <div class="counter-minus">
-                                    -
-                                </div>
-                                <div class="counter-value">
-                                    1
-                                </div>
-                                <div class="counter-plus">
-                                    +
-                                </div>
-                            </div>
-                            <div class="cart-price">
-                                180  ₽
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cart-item">
-                        <div class="item-info">
-                            <div class="cart-img">
-                                <img src="{{asset('/images/catalog1.png')}}" alt="">
-                            </div>
-                            <div class="cart-title">
-                                МКЮР-301591.000
-                            </div>
-                        </div>
-                        <div class="item-info">
-                            <div class="cart-counter">
-                                <div class="counter-minus">
-                                    -
-                                </div>
-                                <div class="counter-value">
-                                    1
-                                </div>
-                                <div class="counter-plus">
-                                    +
-                                </div>
-                            </div>
-                            <div class="cart-price">
-                                180  ₽
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cart-item">
-                        <div class="item-info">
-                            <div class="cart-img">
-                                <img src="{{asset('/images/catalog1.png')}}" alt="">
-                            </div>
-                            <div class="cart-title">
-                                МКЮР-301591.000
-                            </div>
-                        </div>
-                        <div class="item-info">
-                            <div class="cart-counter">
-                                <div class="counter-minus">
-                                    -
-                                </div>
-                                <div class="counter-value">
-                                    1
-                                </div>
-                                <div class="counter-plus">
-                                    +
-                                </div>
-                            </div>
-                            <div class="cart-price">
-                                180  ₽
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="cart-info">
                     <div class="price-info">
@@ -106,7 +56,7 @@
                             Итого
                         </div>
                         <div class="info-value">
-                            540 ₽
+                            {{$cart['totalPrice']}} ₽
                         </div>
                     </div>
                     <div class="count-info">
@@ -114,11 +64,11 @@
                             Общее количество
                         </div>
                         <div class="info-value">
-                            4
+                            {{$cart['quantity']}}
                         </div>
                     </div>
                 </div>
-                <a class="cart-btn btn btn--blue">
+                <a href="{{route('offer')}}" class="cart-btn btn btn--blue">
                     Оформить заказ
                 </a>
             </div>

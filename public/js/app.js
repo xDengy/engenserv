@@ -19566,6 +19566,16 @@ var __webpack_exports__ = {};
   !*** ./resources/js/app.js ***!
   \*****************************/
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+window.updateCart = function (cart) {
+  var cartEl = document.querySelector('header .cart');
+  if (cart.count) {
+    cartEl.classList.add('active');
+    cartEl.querySelector('.counter').innerText = cart.count;
+  } else {
+    cartEl.classList.remove('active');
+    cartEl.querySelector('.counter').innerText = 0;
+  }
+};
 })();
 
 /******/ })()

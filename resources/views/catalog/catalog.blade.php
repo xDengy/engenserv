@@ -35,13 +35,13 @@
                                     дешевле
                                 </div>
                                 <div class="select-values">
-                                    <a href="{{$_SERVER['REDIRECT_URL']}}" class="select-value">
+                                    <a href="{{$request_uri}}" class="select-value">
                                         дешевле
                                     </a>
-                                    <a href="{{$_SERVER['REDIRECT_URL'] . '?sort=maxPrice'}}" class="select-value">
+                                    <a href="{{$request_uri . '?sort=maxPrice'}}" class="select-value">
                                         дороже
                                     </a>
-                                    <a href="{{$_SERVER['REDIRECT_URL'] . '?sort=new'}}" class="select-value">
+                                    <a href="{{$request_uri . '?sort=new'}}" class="select-value">
                                         новинки
                                     </a>
                                 </div>
@@ -50,24 +50,24 @@
                     </div>
                     <div class="catalog-items">
                         @foreach($elements as $element)
-                            <a href="{{route('catalogDetail', $element->url)}}" class="catalog-item">
-                                <div class="item-img">
+                            <div class="catalog-item">
+                                <a href="{{route('catalogDetail', $element->url)}}" class="item-img">
                                     <img src="{{$element->attachment->first()->url ?? asset('/images/empty.png')}}" alt="">
-                                </div>
+                                </a>
                                 <div class="item-info">
-                                    <div class="item-title">
+                                    <a href="{{route('catalogDetail', $element->url)}}" class="item-title">
                                         {{$element->name}}
-                                    </div>
+                                    </a>
                                     <div class="item-cart-info">
                                         <div class="item-price">
                                             {{$element->price}} ₽
                                         </div>
-                                        <div class="item-add-to-cart">
+                                        <div class="item-add-to-cart detail-add-to-cart" data-id="{{$element->id}}" data-url="{{route('cart.update.product')}}">
                                             +
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                            </div>
                         @endforeach
                         {{$elements->links('includes.pagination')}}
                     </div>

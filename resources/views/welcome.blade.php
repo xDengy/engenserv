@@ -1,9 +1,9 @@
 @extends('layouts.index')
 
 @section('seo')
-    <title></title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    <title>{{$page->title}}</title>
+    <meta name="description" content="{{$page->desc}}">
+    <meta name="keywords" content="{{$page->keywords}}">
     <link rel="stylesheet" href="{{ asset('/css/index.css') }}" media="screen">
 @endsection
 

@@ -63,7 +63,7 @@
                                         echo htmlspecialchars_decode($element->text)
                                     @endphp
                                 </div>
-                                <div class="detail-add-to-cart btn btn--blue">
+                                <div class="detail-add-to-cart btn btn--blue" data-id="{{$element->id}}" data-url="{{route('cart.update.product')}}">
                                     Добавить в корзину
                                 </div>
                             </div>

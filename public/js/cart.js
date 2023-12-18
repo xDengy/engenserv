@@ -19566,6 +19566,55 @@ var __webpack_exports__ = {};
   !*** ./resources/js/cart.js ***!
   \******************************/
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+var pluses = document.querySelectorAll('.counter-plus');
+var _loop = function _loop() {
+  var parent = pluses[i].parentNode;
+  pluses[i].addEventListener('click', function () {
+    changeQuantity(parent, false);
+  });
+};
+for (var i = 0; i < pluses.length; i++) {
+  _loop();
+}
+var minuses = document.querySelectorAll('.counter-minus');
+var _loop2 = function _loop2() {
+  var parent = pluses[_i].parentNode;
+  minuses[_i].addEventListener('click', function () {
+    changeQuantity(parent);
+  });
+};
+for (var _i = 0; _i < minuses.length; _i++) {
+  _loop2();
+}
+function changeQuantity(parent) {
+  var minus = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+  var counter = parent.querySelector('.counter-value');
+  var changeQuantityRes;
+  if (minus) {
+    changeQuantityRes = parseInt(counter.textContent) - 1;
+    if (parseInt(counter.textContent) <= 1) {
+      return;
+    }
+  } else {
+    changeQuantityRes = parseInt(counter.textContent) + 1;
+  }
+  counter.textContent = changeQuantityRes;
+  var url = parent.dataset.url;
+  var id = parent.dataset.id;
+  var count = parseInt(counter.textContent);
+  url = "".concat(url, "?id=").concat(id, "&count=").concat(count);
+  fetch(url).then(function (resp) {
+    return resp.json();
+  }).then(function (json) {
+    window.updateCart(json, true);
+    var totalCount = document.querySelector('.count-info .info-value');
+    totalCount.textContent = json.count;
+    var totalPrice = document.querySelector('.price-info .info-value');
+    totalPrice.textContent = json.total + ' ₽';
+    var itemPrice = parent.parentNode.querySelector('.cart-price');
+    itemPrice.textContent = json.price * json.quantity + ' ₽';
+  });
+}
 })();
 
 /******/ })()

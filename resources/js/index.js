@@ -33,3 +33,8 @@ for (let i = 0; i < imgs.length; i++) {
         });
     }
 }
+
+let searchBtn = document.querySelector('.search svg');
+searchBtn.addEventListener('click', () => {
+    searchBtn.parentNode.classList.toggle('active');
+})

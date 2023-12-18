@@ -19578,6 +19578,18 @@ var _loop = function _loop(i) {
 for (var i = 0; i < sectionItems.length; i++) {
   _loop(i);
 }
+var toCartBtn = document.querySelector('.detail-add-to-cart');
+toCartBtn.addEventListener('click', function (e) {
+  var url = e.target.dataset.url;
+  var id = e.target.dataset.id;
+  var count = 1;
+  url = "".concat(url, "?id=").concat(id, "&count=").concat(count);
+  fetch(url).then(function (resp) {
+    return resp.json();
+  }).then(function (json) {
+    window.updateCart(json);
+  });
+});
 })();
 
 /******/ })()

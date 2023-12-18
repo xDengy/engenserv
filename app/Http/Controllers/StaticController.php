@@ -20,11 +20,13 @@ class StaticController extends Controller
     public int $paginateNews = 3;
     public string $sort = 'sort';
     public string $order = 'ASC';
+    public ?string $query = null;
     public function __construct()
     {
         $this->data['settings'] = Setting::first();
         $this->data['menu'] = Menu::orderBy('sort', 'ASC')->get();
-        $this->data['page'] = Page::where('url', $_SERVER['REDIRECT_URL'])->first() ?? new Page;
+        $this->data['request_uri'] = explode('?', $_SERVER['REQUEST_URI'])[0];
+        $this->data['page'] = Page::where('url', $this->data['request_uri'])->first() ?? new Page;
         if ($this->data['page']) {
             $this->data['page']->photos1 = $this->data['page']->attachment->where('group','page1');
             $this->data['page']->photos2 = $this->data['page']->attachment->where('group','page2');
@@ -38,7 +40,7 @@ class StaticController extends Controller
                 'title' => $this->data['page']->h1,
             ],
         ];
-        if (in_array($_SERVER['REDIRECT_URL'], ['/catalog', '/novinki'])) {
+        if (in_array($this->data['request_uri'], ['/catalog', '/novinki'])) {
             $sort = 'price';
             $order = 'ASC';
             if (isset($_GET['sort'])) {
@@ -54,6 +56,9 @@ class StaticController extends Controller
                     default :
                         break;
                 }
+            }
+            if (isset($_GET['q'])) {
+                $this->query = $_GET['q'];
             }
             $this->sort = $sort;
             $this->order = $order;
@@ -127,7 +132,7 @@ class StaticController extends Controller
                 'link' => '/catalog/',
             ],
         ];
-        if (in_array($_SERVER['REDIRECT_URL'], ['/catalog', '/novinki'])) {
+        if (in_array($this->data['request_uri'], ['/catalog', '/novinki'])) {
             unset($this->data['breadcrumbs'][1]['link']);
         }
         if ($codes) {
@@ -149,6 +154,9 @@ class StaticController extends Controller
         $elemRes = Catalog::where('is_folder', 0);
         if (!empty($folderIds)) {
             $elemRes = $elemRes->whereIn('folder_id', $folderIds);
+        }
+        if ($this->query) {
+            $elemRes = $elemRes->where('name', 'like', '%' . $this->query . '%');
         }
         $elements = $elemRes->orderBy($this->sort, $this->order)->paginate($this->paginateCatalog)->withQueryString();
         $this->data['elements'] = $elements;
@@ -196,16 +204,17 @@ class StaticController extends Controller
 
     public function cart()
     {
+        $id = session()->getId();
+        $cartSess = \Cart::session($id);
+        $this->data['cart'] = [];
+        $this->data['cart']['items'] = $cartSess->getContent();
+        $this->data['cart']['totalPrice'] = $cartSess->getTotal();;
+        $this->data['cart']['quantity'] = $cartSess->getTotalQuantity();
         return view('cart.cart', $this->data);
     }
 
     public function offer()
     {
         return view('cart.offer', $this->data);
-    }
-
-    public function dev()
-    {
-        return view('dev', $this->data);
     }
 }

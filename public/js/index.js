@@ -20364,6 +20364,10 @@ for (var i = 0; i < imgs.length; i++) {
     });
   }
 }
+var searchBtn = document.querySelector('.search svg');
+searchBtn.addEventListener('click', function () {
+  searchBtn.parentNode.classList.toggle('active');
+});
 })();
 
 /******/ })()
