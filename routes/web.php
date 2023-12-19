@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\StaticController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +25,7 @@ Route::get('/news/', [StaticController::class, 'news'])->name('news');
 Route::get('/about/', [StaticController::class, 'about'])->name('about');
 Route::get('/contacts/', [StaticController::class, 'contacts'])->name('contacts');
 Route::get('/cart/', [StaticController::class, 'cart'])->name('cart');
-Route::get('/offer/', [StaticController::class, 'offer'])->name('offer');
+Route::get('/order/', [StaticController::class, 'order'])->name('order');
 
 Route::get('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart/remove/{product}', [CartController::class, 'remove'])->name('cart.remove');
@@ -33,8 +33,5 @@ Route::get('/cart/update', [CartController::class, 'update'])->name('cart.update
 Route::get('/cart/update-cart', [CartController::class, 'updateCart'])->name('cart.update.product');
 Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 
-Route::post('/order/create', [OrderController::class, 'create'])->name('order.create');
-Route::get('/order/complete', [OrderController::class, 'complete'])->name('order.complete');
-Route::get('/order/{order}/delete/{product}', [OrderController::class, 'deleteProduct'])->name(
-    'order.product.delete'
-);
+Route::post('/order/create', [MailController::class, 'sendOrderForm'])->name('order.create');
+Route::post('/partnerForm', [MailController::class, 'sendPartnerForm'])->name('partnerForm');

@@ -20,9 +20,9 @@ class ClientNewOrderEmail extends Mailable
     public function build()
     {
         return $this
-            ->from('email@adress.com', 'Инженерсервис')
+            ->from('xDN.progger@yandex.com', 'Инженерсервис')
             ->to($this->order->email)
             ->subject('Новый заказ с Инженерсервис')
-            ->view('mails.order.new.client', ['order' => $this->order]);
+            ->view('mails.order.client', ['order' => $this->order]);
     }
 }

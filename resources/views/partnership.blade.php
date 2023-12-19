@@ -51,7 +51,8 @@
                         <br>
                         Заполните заявку:
                     </div>
-                    <form action="" method="post">
+                    <form action="{{route('partnerForm')}}" method="post">
+                        @csrf
                         <input id="name" name="name" class="form-input" type="text" placeholder="Ваше имя" required>
                         <input id="email" name="email" class="form-input" type="email" placeholder="Электронная почта" required>
                         <input class="form-btn btn btn--blue" type="submit" value="Отправить заявку">

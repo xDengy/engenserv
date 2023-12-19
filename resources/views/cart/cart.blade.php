@@ -23,7 +23,7 @@
                 <div class="cart-items">
                     @foreach($cart['items'] as $item)
                         <div class="cart-item">
-                            <a href="{{$item->attributes->url}}" class="item-info">
+                            <a href="/catalog/{{$item->attributes->url}}" class="item-info">
                                 <div class="cart-img">
                                     <img src="{{$item->attributes->img}}" alt="">
                                 </div>
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{route('offer')}}" class="cart-btn btn btn--blue">
+                <a href="{{route('order')}}" class="cart-btn btn btn--blue">
                     Оформить заказ
                 </a>
             </div>

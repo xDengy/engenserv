@@ -8,6 +8,7 @@ use App\Models\Contact;
 use App\Models\Main;
 use App\Models\Menu;
 use App\Models\News;
+use App\Models\Order;
 use App\Models\Partner;
 use App\Models\Setting;
 use App\Models\Page;
@@ -204,17 +205,37 @@ class StaticController extends Controller
 
     public function cart()
     {
+        $this->getCart();
+        return view('cart.cart', $this->data);
+    }
+
+    public function order(Request $request)
+    {
+        $this->getCart();
+        $session = $request->session();
+        if (!$session->has('order')) {
+            $order = Order::create([]);
+            $session->put('order', $order->id);
+        } else {
+            $order = Order::find($session->get('order'));
+        }
+        foreach ($this->data['cart']['items'] as $item) {
+            $order->catalog()->syncWithPivotValues($item->id, [
+                'quantity' => $item->quantity,
+                'price' => $item->price,
+            ], false);
+        }
+        $this->data['order'] = $order;
+        return view('cart.offer', $this->data);
+    }
+
+    public function getCart()
+    {
         $id = session()->getId();
         $cartSess = \Cart::session($id);
         $this->data['cart'] = [];
         $this->data['cart']['items'] = $cartSess->getContent();
         $this->data['cart']['totalPrice'] = $cartSess->getTotal();;
         $this->data['cart']['quantity'] = $cartSess->getTotalQuantity();
-        return view('cart.cart', $this->data);
-    }
-
-    public function offer()
-    {
-        return view('cart.offer', $this->data);
     }
 }

@@ -20,9 +20,9 @@ class AdminNewOrderEmail extends Mailable
     public function build()
     {
         return $this
-            ->from('email@adress.com', 'Инженерсервис')
+            ->from('xDN.progger@yandex.com', 'Инженерсервис')
             ->to('xxdenkenxx@gmail.com')
             ->subject('Новый заказ с Инженерсервис')
-            ->view('mails.order.new.admin', ['order' => $this->order]);
+            ->view('mails.order.admin', ['order' => $this->order]);
     }
 }
