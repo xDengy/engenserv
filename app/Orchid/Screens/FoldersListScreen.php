@@ -13,6 +13,7 @@ class FoldersListScreen extends Screen
     public $folder = null;
     public $exist = false;
     public $parent = null;
+    public $folderId = null;
 
     public function query($id = null): array
     {
@@ -20,6 +21,7 @@ class FoldersListScreen extends Screen
             $el = Catalog::find($id);
             $this->folder = $el;
             $this->exist = $el->exists;
+            $this->folderId = $el->folder_id;
             $this->parent = Catalog::find($el->folder_id);
             $id = $el->id;
             $this->name = $el->name;
@@ -50,6 +52,11 @@ class FoldersListScreen extends Screen
             $commandAr[] = Link::make('Назад')
                 ->icon('arrow-left')
                 ->route('platform.folder.list', $this->parent);
+
+            if ($this->folderId) {
+                unset($commandAr[0]);
+                $commandAr = array_values($commandAr);
+            }
         }
 
         return $commandAr;

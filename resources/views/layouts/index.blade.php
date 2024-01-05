@@ -81,7 +81,7 @@
                             @endphp
                         </div>
                     </a>
-                    <div class="info">
+                    <div class="info hd-mob">
                         <div class="link">
                             <a href="tel:{{$settings->phone}}">
                                 {{$settings->phone}}
@@ -94,13 +94,27 @@
                         </div>
                     </div>
                 </div>
-                @if(!empty($menu))
-                    <nav class="menu">
-                        @foreach($menu as $link)
-                            <a href="{{$link->link}}">{{$link->name}}</a>
-                        @endforeach
-                    </nav>
-                @endif
+                <div class="wrapper">
+                    @if(!empty($menu))
+                        <nav class="menu">
+                            @foreach($menu as $link)
+                                <a href="{{$link->link}}">{{$link->name}}</a>
+                            @endforeach
+                        </nav>
+                        <div class="info sh-mob">
+                            <div class="link">
+                                <a href="tel:{{$settings->phone}}">
+                                    {{$settings->phone}}
+                                </a>
+                            </div>
+                            <div class="link">
+                                <a href="mailto:{{$settings->email}}">
+                                    {{$settings->email}}
+                                </a>
+                            </div>
+                        </div>
+                    @endif
+                </div>
                 <div class="copyright-text">
                     2014 © ООО "Инженерсервис".
                     <br>

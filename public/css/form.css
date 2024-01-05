@@ -77,12 +77,17 @@ form {
     margin-left: 15px;
 }
 
-.personal-input + label::before {
+input.personal-input + label::before {
     content: "";
     background-image: url('/images/checkbox.svg');
     background-position: center;
     background-repeat: no-repeat;
+    background-size: contain;
     width: 18px;
     height: 18px;
     display: block;
+}
+
+input.personal-input:checked + label::before {
+    background-image: url('/images/checkboxActive.svg');
 }

@@ -31,6 +31,7 @@ header {
     font-size: 1.3rem;
     font-weight: 300;
     letter-spacing: 0.1px;
+    margin-left: 12px;
 }
 
 .logo-text b,
@@ -137,6 +138,7 @@ header {
 
 footer {
     background: #2749A2;
+    margin-top: 100px;
 }
 
 footer .container {
@@ -146,6 +148,14 @@ footer .container {
 
 footer .link a {
     font-size: 2rem;
+}
+
+footer .menu {
+    margin-top: 0;
+}
+
+footer .wrapper {
+    margin-top: 4rem;
 }
 
 footer .menu a {
@@ -163,3 +173,31 @@ footer .menu a {
 /*
 HEADER & FOOTER END
 */
+
+@media (max-width: 1024px) {
+    .info {
+        gap: 3rem;
+    }
+
+    header .menu, header .logo, header .search, header .cart {
+        display: none;
+    }
+
+    footer .menu {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 50%;
+        gap: 20px;
+    }
+
+    footer .wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    footer .wrapper .info {
+        gap: 15px;
+        flex-direction: column;
+        justify-content: unset;
+    }
+}

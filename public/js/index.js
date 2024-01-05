@@ -20331,7 +20331,7 @@ var __webpack_exports__ = {};
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 var _require = __webpack_require__(/*! @wizpanda/super-gif */ "./node_modules/@wizpanda/super-gif/dist/super-gif.js"),
   SuperGif = _require.SuperGif;
-var swiper = new Swiper('.advantages .swiper', {
+var advSwiper = new Swiper('.advantages .swiper', {
   loop: true,
   speed: 400,
   allowTouchMove: true,
@@ -20351,18 +20351,72 @@ var swiper = new Swiper('.advantages .swiper', {
     }
   }
 });
-var imgs = document.querySelectorAll('.gif');
-for (var i = 0; i < imgs.length; i++) {
-  var img_tag = imgs[i];
-  if (/.*\.gif/.test(img_tag.src)) {
-    console.log(img_tag);
-    var rub = new SuperGif({
-      gif: img_tag
-    }, []);
-    rub.load(function () {
-      console.log('oh hey, now the gif is loaded');
-    });
+var newsMin = new Swiper('.news .swiper.min', {
+  loop: true,
+  speed: 400,
+  allowTouchMove: true,
+  slidesPerView: 4,
+  spaceBetween: 15
+});
+var newsSwiper = new Swiper('.news .swiper.max', {
+  loop: true,
+  speed: 400,
+  allowTouchMove: true,
+  slidesPerView: 1,
+  spaceBetween: 15,
+  thumbs: {
+    swiper: newsMin
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev'
   }
+});
+var images = document.querySelectorAll('.about-image');
+var _loop = function _loop(i) {
+  var imgTag = images[i].querySelector('.gif');
+  var gif = new SuperGif(imgTag, {
+    autoPlay: false,
+    drawWhileLoading: false,
+    showProgressBar: false
+  });
+  gif.load(function () {
+    images[i].classList.add('loaded');
+    // let scrollTop = 0;
+    var allowMove = 0;
+    var lastKnownScrollPosition = 0;
+    var bodyRect = document.body.getBoundingClientRect();
+    var offset = gif.canvas.getBoundingClientRect();
+    var imgTopPos = offset.top - bodyRect.top;
+    // let imgBotPos = imgTopPos + offset.height;
+
+    document.addEventListener('scroll', function (event) {
+      if (imgTopPos - 500 < window.scrollY && window.scrollY > lastKnownScrollPosition) {
+        // scrollTop = 0;
+        allowMove = 1;
+        // } else if (imgBotPos > window.scrollY && window.scrollY <= lastKnownScrollPosition) {
+        //     scrollTop = 1;
+        //     allowMove = 1;
+      } else {
+        allowMove = 0;
+      }
+      lastKnownScrollPosition = window.scrollY;
+      if (allowMove) {
+        // if (scrollTop) {
+        // if (parseInt(gif.currentFrameIndex) - 1 >= 0) {
+        //     gif.moveTo(parseInt(gif.currentFrameIndex) - 1);
+        // }
+        // } else {
+        if (parseInt(gif.currentFrameIndex) + 1 < gif.frames.length) {
+          gif.moveTo(parseInt(gif.currentFrameIndex) + 1);
+        }
+        // }
+      }
+    });
+  });
+};
+for (var i = 0; i < images.length; i++) {
+  _loop(i);
 }
 var searchBtn = document.querySelector('.search svg');
 searchBtn.addEventListener('click', function () {

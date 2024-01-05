@@ -35,12 +35,16 @@
     "/images/banner.png": "/images/banner.png",
     "/images/catalog1.png": "/images/catalog1.png",
     "/images/checkbox.svg": "/images/checkbox.svg",
+    "/images/checkboxActive.svg": "/images/checkboxActive.svg",
     "/images/empty.png": "/images/empty.png",
+    "/images/gifPreview1.png": "/images/gifPreview1.png",
+    "/images/gifPreview2.png": "/images/gifPreview2.png",
     "/images/news1.png": "/images/news1.png",
     "/images/news2.png": "/images/news2.png",
     "/images/news3.png": "/images/news3.png",
     "/images/news4.png": "/images/news4.png",
     "/images/news5.png": "/images/news5.png",
+    "/images/partnerBanner.png": "/images/partnerBanner.png",
     "/fonts/Geometria-Bold.woff": "/fonts/Geometria-Bold.woff",
     "/fonts/Geometria-Bold.woff2": "/fonts/Geometria-Bold.woff2",
     "/fonts/Geometria-BoldItalic.woff": "/fonts/Geometria-BoldItalic.woff",
@@ -55,5 +59,10 @@
     "/fonts/Geometria-Medium.woff2": "/fonts/Geometria-Medium.woff2",
     "/fonts/Geometria-MediumItalic.woff": "/fonts/Geometria-MediumItalic.woff",
     "/fonts/Geometria-MediumItalic.woff2": "/fonts/Geometria-MediumItalic.woff2",
-    "/fonts/fonts.css": "/fonts/fonts.css"
+    "/fonts/fonts.css": "/fonts/fonts.css",
+    "/images/about1.cm2uXSDo.gif.part": "/images/about1.cm2uXSDo.gif.part",
+    "/images/about2.H2uc57nj.gif.part": "/images/about2.H2uc57nj.gif.part",
+    "/images/about2.iasgtZMN.gif.part": "/images/about2.iasgtZMN.gif.part",
+    "/images/about1.RrXu-LJT.gif.part": "/images/about1.RrXu-LJT.gif.part",
+    "/images/about2.sjeQiU0F.gif.part": "/images/about2.sjeQiU0F.gif.part"
 }

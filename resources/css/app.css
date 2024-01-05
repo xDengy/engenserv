@@ -68,9 +68,27 @@ body {
     border-radius: 10rem;
 }
 
+.sh-mob {
+    display: none !important;;
+}
+
+@media (max-width: 1440px) {
+    .container {
+        max-width: 1280px;
+    }
+}
+
 @media (max-width: 1024px) {
     html {
         font-size: calc(100vw / 768 * 10);
+    }
+
+    .hd-mob {
+        display: none !important;
+    }
+
+    .sh-mob {
+        display: flex !important;;
     }
 }
 

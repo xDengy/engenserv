@@ -19576,6 +19576,12 @@ window.updateCart = function (cart) {
     cartEl.querySelector('.counter').innerText = 0;
   }
 };
+var backBtn = document.querySelector('.error-btn-back');
+if (backBtn) {
+  backBtn.addEventListener('click', function () {
+    history.back();
+  });
+}
 })();
 
 /******/ })()

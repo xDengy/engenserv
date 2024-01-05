@@ -22,6 +22,16 @@
                         echo htmlspecialchars_decode($main->text);
                     @endphp
                 </div>
+                <div class="banner-block-main-text">
+                    <div class="logo-img">
+                        <img src="{{$settings->logo}}" alt="logo">
+                    </div>
+                    <div class="logo-text">
+                        @php
+                            echo htmlspecialchars_decode($settings->logotext);
+                        @endphp
+                    </div>
+                </div>
                 <a href="" class="banner-block-btn btn btn--orange btn--round">
                     Перейти в каталог
                 </a>
@@ -161,6 +171,46 @@
                     </div>
                 @endforeach
             </div>
+            <div class="swiper max">
+                <div class="swiper-wrapper">
+                    @foreach($newsAll as $newsItem)
+                        <div class="swiper-slide">
+                            <div class="news-item">
+                                <img src="{{$newsItem['image']}}" alt="">
+                                <div class="news-block">
+                                    <div class="news-btn btn btn btn--round" style="background: {{$newsItem['tags']['color']}}">
+                                        {{$newsItem['tags']['name']}}
+                                    </div>
+                                    <div class="news-name">
+                                        {{$newsItem['name']}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="swiper-button-prev">
+                    <svg width="14" height="24" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.93934 13.0607C0.353553 12.4749 0.353553 11.5251 0.93934 10.9393L10.4853 1.3934C11.0711 0.807611 12.0208 0.807611 12.6066 1.3934C13.1924 1.97918 13.1924 2.92893 12.6066 3.51472L4.12132 12L12.6066 20.4853C13.1924 21.0711 13.1924 22.0208 12.6066 22.6066C12.0208 23.1924 11.0711 23.1924 10.4853 22.6066L0.93934 13.0607ZM4 13.5L2 13.5L2 10.5L4 10.5L4 13.5Z" fill="white" fill-opacity="0.2"/>
+                    </svg>
+                </div>
+                <div class="swiper-button-next">
+                    <svg width="14" height="24" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.0607 13.0607C13.6464 12.4749 13.6464 11.5251 13.0607 10.9393L3.51472 1.3934C2.92893 0.807611 1.97919 0.807611 1.3934 1.3934C0.807612 1.97918 0.807612 2.92893 1.3934 3.51472L9.87868 12L1.3934 20.4853C0.807611 21.0711 0.807611 22.0208 1.3934 22.6066C1.97918 23.1924 2.92893 23.1924 3.51472 22.6066L13.0607 13.0607ZM10 13.5L12 13.5L12 10.5L10 10.5L10 13.5Z" fill="white" fill-opacity="0.5"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="swiper min">
+                <div class="swiper-wrapper">
+                    @foreach($newsAll as $newsItem)
+                        <div class="swiper-slide">
+                            <div class="news-item">
+                                <img src="{{$newsItem['image']}}" alt="">
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </section>
     @if(!empty($about))
@@ -180,37 +230,37 @@
                             <div class="about-quality">
                                 <div class="quality">
                                     <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path opacity="0.6" d="M1.77273 7.42857C1.77273 4.30493 4.30493 1.77273 7.42857 1.77273H18.5714C21.6951 1.77273 24.2273 4.30493 24.2273 7.42857V18.5714C24.2273 21.6951 21.6951 24.2273 18.5714 24.2273H7.42857C4.30493 24.2273 1.77273 21.6951 1.77273 18.5714V7.42857Z" stroke="#FF5C00" stroke-width="3.54545"/>
+                                        <path d="M23.1111 0H2.88889C1.3 0 0 1.3 0 2.88889V23.1111C0 24.7 1.3 26 2.88889 26H23.1111C24.7 26 26 24.7 26 23.1111V2.88889C26 1.3 24.7 0 23.1111 0ZM23.1111 23.1111H2.88889V2.88889H23.1111V23.1111ZM21.6522 8.66667L19.6156 6.61556L10.0967 16.1344L6.37 12.4222L4.31889 14.4589L10.0967 20.2222L21.6522 8.66667Z" fill="#2749A3"/>
                                     </svg>
                                     Качество
                                 </div>
                                 <div class="quality">
-                                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path opacity="0.6"
-                                              d="M1.77273 7.42857C1.77273 4.30493 4.30493 1.77273 7.42857 1.77273H18.5714C21.6951 1.77273 24.2273 4.30493 24.2273 7.42857V18.5714C24.2273 21.6951 21.6951 24.2273 18.5714 24.2273H7.42857C4.30493 24.2273 1.77273 21.6951 1.77273 18.5714V7.42857Z"
-                                              stroke="#2749A3" stroke-width="3.54545"/>
+                                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M23.1111 0H2.88889C1.3 0 0 1.3 0 2.88889V23.1111C0 24.7 1.3 26 2.88889 26H23.1111C24.7 26 26 24.7 26 23.1111V2.88889C26 1.3 24.7 0 23.1111 0ZM23.1111 23.1111H2.88889V2.88889H23.1111V23.1111ZM21.6522 8.66667L19.6156 6.61556L10.0967 16.1344L6.37 12.4222L4.31889 14.4589L10.0967 20.2222L21.6522 8.66667Z" fill="#2749A3"/>
                                     </svg>
                                     Качество
                                 </div>
                                 <div class="quality">
-                                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path opacity="0.6"
-                                              d="M1.77273 7.42857C1.77273 4.30493 4.30493 1.77273 7.42857 1.77273H18.5714C21.6951 1.77273 24.2273 4.30493 24.2273 7.42857V18.5714C24.2273 21.6951 21.6951 24.2273 18.5714 24.2273H7.42857C4.30493 24.2273 1.77273 21.6951 1.77273 18.5714V7.42857Z"
-                                              stroke="#FF5C00" stroke-width="3.54545"/>
+                                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M23.1111 0H2.88889C1.3 0 0 1.3 0 2.88889V23.1111C0 24.7 1.3 26 2.88889 26H23.1111C24.7 26 26 24.7 26 23.1111V2.88889C26 1.3 24.7 0 23.1111 0ZM23.1111 23.1111H2.88889V2.88889H23.1111V23.1111ZM21.6522 8.66667L19.6156 6.61556L10.0967 16.1344L6.37 12.4222L4.31889 14.4589L10.0967 20.2222L21.6522 8.66667Z" fill="#2749A3"/>
                                     </svg>
                                     Качество
                                 </div>
                             </div>
                         @endif
-                        <a href="{{$about[0]->link}}" class="about-btn about-btn--colored btn btn--round btn--bordered">
+                        <a href="{{$about[0]->link}}" class="about-btn hd-mob about-btn--colored btn btn--round btn--bordered">
                             {{$about[0]->link_text}}
                         </a>
                     </div>
-                    <div class="about-image">
-                        <img class="gif" src="{{asset('/images/about1.gif')}}" alt="">
-                    </div>
+                    @if (isset($page['photos1']) && isset($page['photos2']))
+                        <div class="about-image">
+                            <img class="preview" src="{{$page['photos1']->get(0)->url}}" alt="">
+                            <img class="gif" src="{{$page['photos2']->get(2)->url}}" alt="">
+                        </div>
+                   @endif
+                    <a href="{{$about[0]->link}}" class="about-btn sh-mob about-btn--colored btn btn--round btn--bordered">
+                        {{$about[0]->link_text}}
+                    </a>
                 </div>
             </div>
         </section>
@@ -271,13 +321,19 @@
                                 </div>
                             </div>
                         @endif
-                        <a href="{{$about[1]->link}}" class="about-btn btn btn--blue btn--round btn--bordered">
+                        <a href="{{$about[1]->link}}" class="about-btn hd-mob btn btn--blue btn--round btn--bordered">
                             {{$about[1]->link_text}}
                         </a>
                     </div>
-                    <div class="about-image">
-                        <img class="gif" src="{{asset('/images/about2.gif')}}" alt="">
-                    </div>
+                    @if (isset($page['photos1']) && isset($page['photos2']))
+                        <div class="about-image">
+                            <img class="preview" src="{{$page['photos1']->get(1)->url}}" alt="">
+                            <img class="gif" src="{{$page['photos2']->get(3)->url}}" alt="">
+                        </div>
+                    @endif
+                    <a href="{{$about[1]->link}}" class="about-btn sh-mob btn btn--blue btn--round btn--bordered">
+                        {{$about[1]->link_text}}
+                    </a>
                 </div>
             </div>
         </section>

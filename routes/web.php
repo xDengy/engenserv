@@ -35,3 +35,5 @@ Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 
 Route::post('/order/create', [MailController::class, 'sendOrderForm'])->name('order.create');
 Route::post('/partnerForm', [MailController::class, 'sendPartnerForm'])->name('partnerForm');
+
+Route::any('/{any}', [StaticController::class, 'error'])->where('any', '.*');

@@ -71,14 +71,17 @@ class StaticController extends Controller
         $this->data['main'] = Main::first();
         $newsRes = News::orderBy('sort', 'ASC')->limit(4)->get();
         $news = [];
+        $newsAll = [];
         foreach ($newsRes as $newItem) {
             $tag = $newItem->tags;
             $newsResAr = $newItem->toArray();
             $news[] = $newsResAr;
+            $newsAll[] = $newsResAr;
         }
         $this->data['news'] = [];
         $this->data['news'][] = [array_shift($news)];
         $this->data['news'][] = $news;
+        $this->data['newsAll'] = $newsAll;
         $this->data['about'] = About::orderBy('sort', 'ASC')->get();
         return view('welcome', $this->data);
     }
@@ -237,5 +240,10 @@ class StaticController extends Controller
         $this->data['cart']['items'] = $cartSess->getContent();
         $this->data['cart']['totalPrice'] = $cartSess->getTotal();;
         $this->data['cart']['quantity'] = $cartSess->getTotalQuantity();
+    }
+
+    public function error()
+    {
+        return view('errors.404', $this->data);
     }
 }

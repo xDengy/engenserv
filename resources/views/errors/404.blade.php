@@ -24,9 +24,9 @@
                     <div class="error-btn-back btn btn--bordered">
                         Вернуться назад
                     </div>
-                    <div class="error-btn-main btn btn--bordered btn--blue">
+                    <a href="/" class="error-btn-main btn btn--bordered btn--blue">
                         На главную
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
