@@ -6,6 +6,7 @@ use App\Models\Partner;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Code;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
@@ -75,6 +76,9 @@ class PartnerEditScreen extends Screen
                         ->title('Сортировка')
                         ->type('number')
                         ->required(),
+                    CheckBox::make('partner.active')
+                        ->sendTrueOrFalse()
+                        ->title('Активность'),
                     Input::make('partner.id')
                         ->type('hidden'),
                 ]),

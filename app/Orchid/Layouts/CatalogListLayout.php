@@ -4,6 +4,8 @@ namespace App\Orchid\Layouts;
 
 use App\Models\Catalog;
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
@@ -13,7 +15,7 @@ class CatalogListLayout extends Table
     protected function columns(): array
     {
         return [
-            TD::make('name', 'Name')->render(function (Catalog $el){
+            TD::make('name', 'Название')->render(function (Catalog $el){
                 $icon = '';
                 $link = Link::make($el->name)->route('platform.elems.edit', $el);
                 if($el->is_folder) {
@@ -21,11 +23,17 @@ class CatalogListLayout extends Table
                     $link = Link::make($el->name)->route('platform.folder.list', $el);
                 }
                 return '<div class="v-md-center">' . $icon . $link . '</div>';
-            }),
+            })->filter(Input::make()),
             TD::make('id', 'ID')->render(function (Catalog $el){
                 return $el->id;
-            }),
+            })->filter(Input::make()),
             TD::make('sort', 'Сортировка')->sort(),
+            TD::make('active', 'Активность')->render(function (Catalog $el){
+                return $el ? 'Да' : 'Нет';
+            })->sort()->filter(Select::make()->options([
+                'Нет' => 'Нет',
+                'Да' => 'Да',
+            ])->empty('По-умолчанию')),
         ];
     }
 }

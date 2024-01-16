@@ -18,7 +18,14 @@ class News extends Model
         'text',
         'image',
         'tag_id',
+        'active',
         'sort',
+    ];
+
+    protected $allowedFilters = [
+        'name',
+        'active',
+        'id'
     ];
 
     protected $allowedSorts = [

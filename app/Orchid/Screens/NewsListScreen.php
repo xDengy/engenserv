@@ -4,6 +4,7 @@ namespace App\Orchid\Screens;
 
 use App\Models\News;
 use App\Orchid\Layouts\NewsListLayout;
+use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 
@@ -14,11 +15,29 @@ class NewsListScreen extends Screen
     public $exist = false;
     public $parent = null;
 
-    public function query($id = null): array
+    public function query($id = null, Request $request = null): array
     {
-        return [
-            'news' => News::filters()->defaultSort('id', 'desc')->paginate()
-        ];
+        $condition = [];
+        if (!empty($request->get('filter'))) {
+            $arFilter = $request->get('filter');
+            foreach ($arFilter as $key => $filter) {
+                if ($key == 'active') {
+                    $filter = $filter == 'Да' ? 1 : 0;
+                }
+                $condition[] = [$key, 'like', '%' . mb_strtolower($filter) . '%'];
+            }
+        }
+        $arFilter = $condition;
+
+        if (!empty($arFilter)) {
+            return [
+                'news' => News::where($arFilter)->defaultSort('id', 'desc')->paginate()
+            ];
+        } else {
+            return [
+                'news' => News::defaultSort('id', 'desc')->paginate()
+            ];
+        }
     }
 
     public function commandBar(): array

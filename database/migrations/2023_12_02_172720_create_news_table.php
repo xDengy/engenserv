@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('text');
             $table->string('image');
             $table->integer('sort');
+            $table->char('active', 1);
             $table->bigInteger('tag_id')->nullable();
             $table->timestamps();
         });

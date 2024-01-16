@@ -18,6 +18,13 @@ class Partner extends Model
         'text',
         'image',
         'sort',
+        'active',
+    ];
+
+    protected $allowedFilters = [
+        'name',
+        'active',
+        'id'
     ];
 
     protected $allowedSorts = [

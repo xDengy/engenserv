@@ -24,12 +24,19 @@ class Catalog extends Model
         'folder_id',
         'sort',
         'new',
+        'active',
         'code',
         'url',
         'title',
         'desc',
         'keywords',
         'h1',
+    ];
+
+    protected $allowedFilters = [
+        'name',
+        'active',
+        'id'
     ];
 
     protected $allowedSorts = [

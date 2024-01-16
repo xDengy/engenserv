@@ -32,7 +32,7 @@
                         @endphp
                     </div>
                 </div>
-                <a href="" class="banner-block-btn btn btn--orange btn--round">
+                <a href="{{route('catalog')}}" class="banner-block-btn btn btn--orange btn--round">
                     Перейти в каталог
                 </a>
             </div>

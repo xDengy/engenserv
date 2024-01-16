@@ -83,6 +83,12 @@ class ElementEditScreen extends Screen
                     Input::make('element.is_folder')
                         ->type('hidden')
                         ->value(0),
+                    CheckBox::make('element.new')
+                        ->sendTrueOrFalse()
+                        ->title('Новинка'),
+                    CheckBox::make('element.active')
+                        ->sendTrueOrFalse()
+                        ->title('Активность'),
                     Input::make('element.id')
                         ->type('hidden'),
                     Input::make('element.folder_id')
@@ -91,9 +97,6 @@ class ElementEditScreen extends Screen
             ])->title('Товар'),
             Layout::rows([
                 Group::make([
-                    CheckBox::make('element.new')
-                        ->sendTrueOrFalse()
-                        ->title('Новинка'),
                     Quill::make('element.text')
                         ->title('Описание товара')
                         ->required(),

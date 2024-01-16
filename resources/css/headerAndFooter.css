@@ -291,6 +291,10 @@ HEADER & FOOTER END
     .copyright-text {
         margin-top: 4rem;
     }
+
+    .cart .counter {
+        font-size: 0.8rem;
+    }
 }
 
 @media (max-width: 767px) {

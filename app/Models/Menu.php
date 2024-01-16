@@ -17,6 +17,13 @@ class Menu extends Model
         'name',
         'link',
         'sort',
+        'active',
+    ];
+
+    protected $allowedFilters = [
+        'name',
+        'active',
+        'id'
     ];
 
     protected $allowedSorts = [

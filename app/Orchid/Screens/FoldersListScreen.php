@@ -4,6 +4,7 @@ namespace App\Orchid\Screens;
 
 use App\Models\Catalog;
 use App\Orchid\Layouts\CatalogListLayout;
+use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 
@@ -15,8 +16,12 @@ class FoldersListScreen extends Screen
     public $parent = null;
     public $folderId = null;
 
-    public function query($id = null): array
+    public function query($id = null, Request $request = null): array
     {
+        $arFilter = [
+            'folder_id' => $id
+        ];
+        $condition = [];
         if($id) {
             $el = Catalog::find($id);
             $this->folder = $el;
@@ -27,8 +32,23 @@ class FoldersListScreen extends Screen
             $this->name = $el->name;
         }
 
+        if (!empty($request->get('filter'))) {
+            foreach ($request->get('filter') as $key => $filter) {
+                if ($key == 'active') {
+                    $filter = $filter == 'Да' ? 1 : 0;
+                }
+                $condition[] = [$key, 'like', '%' . mb_strtolower($filter) . '%'];
+            }
+        }
+
+        $arFilter += $condition;
+
+        if (!empty($request->get('folder'))) {
+            unset($arFilter['folder_id']);
+        }
+
         return [
-            'catalogs' => Catalog::where('folder_id', $id)->filters()->defaultSort('is_folder', 'desc')->paginate()
+            'catalogs' => Catalog::where($arFilter)->defaultSort('is_folder', 'desc')->paginate()
         ];
     }
 
@@ -41,7 +61,11 @@ class FoldersListScreen extends Screen
 
             Link::make('Добавить элемент')
                 ->icon('plus')
-                ->route('platform.elems.create', $this->folder)
+                ->route('platform.elems.create', $this->folder),
+
+            Link::make('Все элементы')
+                ->icon('folder')
+                ->route('platform.folder.list', '?' . ($_SERVER['QUERY_STRING'] ? $_SERVER['QUERY_STRING'] . '&' : '') . 'folder=all'),
         ];
         if($this->exist) {
             $commandAr[] = Link::make('Изменить')

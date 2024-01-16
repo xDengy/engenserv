@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('link');
+            $table->char('active', 1);
             $table->integer('sort');
             $table->timestamps();
         });

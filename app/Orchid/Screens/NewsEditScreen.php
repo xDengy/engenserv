@@ -7,6 +7,7 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Picture;
@@ -85,6 +86,9 @@ class NewsEditScreen extends Screen
                         ->title('Тэг'),
                     Input::make('news.id')
                         ->type('hidden'),
+                    CheckBox::make('news.active')
+                        ->sendTrueOrFalse()
+                        ->title('Активность'),
                 ]),
             ]),
             Layout::rows([

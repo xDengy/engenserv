@@ -6,6 +6,7 @@ use App\Models\Menu;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Code;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
@@ -78,6 +79,9 @@ class MenuEditScreen extends Screen
                         ->title('Сортировка')
                         ->type('number')
                         ->required(),
+                    CheckBox::make('menu.active')
+                        ->sendTrueOrFalse()
+                        ->title('Активность'),
                     Input::make('menu.id')
                         ->type('hidden'),
                 ]),

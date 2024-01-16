@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('chars')->nullable();
             $table->text('scheme')->nullable();
             $table->char('new', 1);
+            $table->char('active', 1);
             $table->string('title');
             $table->string('desc');
             $table->string('keywords');

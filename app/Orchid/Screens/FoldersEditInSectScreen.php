@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Screen;
@@ -66,6 +67,9 @@ class FoldersEditInSectScreen extends Screen
                         ->title('Сортировка')
                         ->type('number')
                         ->required(),
+                    CheckBox::make('folder.active')
+                        ->sendTrueOrFalse()
+                        ->title('Активность'),
                 ]),
             ])->title('Раздел'),
             Layout::rows([

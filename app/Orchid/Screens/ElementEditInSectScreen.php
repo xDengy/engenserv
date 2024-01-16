@@ -64,6 +64,12 @@ class ElementEditInSectScreen extends Screen
                         ->title('Сортировка')
                         ->type('number')
                         ->required(),
+                    CheckBox::make('element.new')
+                        ->sendTrueOrFalse()
+                        ->title('Новинка'),
+                    CheckBox::make('element.active')
+                        ->sendTrueOrFalse()
+                        ->title('Активность'),
                     Input::make('element.is_folder')
                         ->type('hidden')
                         ->value(0),
@@ -71,9 +77,6 @@ class ElementEditInSectScreen extends Screen
             ])->title('Товар'),
             Layout::rows([
                 Group::make([
-                    CheckBox::make('element.new')
-                        ->sendTrueOrFalse()
-                        ->title('Новинка'),
                     Quill::make('element.text')
                         ->title('Описание товара')
                         ->required(),
