@@ -21,7 +21,7 @@
                     Неправильно набран адрес или такой страницы не существует
                 </div>
                 <div class="error-btns">
-                    <div class="error-btn-back btn btn--bordered">
+                    <div class="error-btn-back btn btn--bordered" data-btn="back">
                         Вернуться назад
                     </div>
                     <a href="/" class="error-btn-main btn btn--bordered btn--blue">

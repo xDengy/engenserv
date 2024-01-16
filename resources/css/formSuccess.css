@@ -1,0 +1,85 @@
+.form-success {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
+}
+
+.show-form .form-success {
+    display: flex;
+}
+
+.shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.form-success-info {
+    max-width: 710px;
+    height: 515px;
+    width: 100%;
+    background: var(--whiteColor);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    padding: 90px 50px;
+}
+
+.success-title {
+    margin-top: 40px;
+}
+
+.form-success-img {
+    width: 185px;
+    height: 185px;
+}
+
+.success-title, .success-desc {
+    color: var(--blackColor);
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.success-desc {
+    font-weight: 300;
+}
+
+.success-close {
+    position: absolute;
+    top: 0;
+    right: 30px;
+    color: var(--blackColor);
+    font-size: 70px;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+@media (max-width: 767px) {
+    .form-success-info {
+        padding: 50px 30px;
+    }
+
+    .success-title {
+        font-size: 20px;
+    }
+
+    .success-desc {
+        font-size: 15px;
+    }
+
+    .success-close {
+        font-size: 35px;
+    }
+}

@@ -14,27 +14,44 @@ class MailController extends Controller
     public function sendOrderForm(MailRequest $request)
     {
         $data = $request->validated();
+        $status = 'error';
+        $error = '';
         $order = Order::find($data['id']);
-        $order->update($data);
-        try {
-            Mail::send(new AdminNewOrderEmail($order));
-            Mail::send(new ClientNewOrderEmail($order));
-            \Cart::session(session()->getId())->clear();
-        } catch (\Exception $e) {
-            session()->put('status', $e->getMessage());
+        if ($order) {
+            $order->update($data);
+            try {
+                Mail::send(new AdminNewOrderEmail($order, 'Новый заказ с Инженерсервис'));
+                Mail::send(new ClientNewOrderEmail($order, 'Ваш заказ принят'));
+                \Cart::session(session()->getId())->clear();
+                session()->forget('order');
+                $status = 'success';
+            } catch (\Exception $e) {
+                $error = $e->getMessage();
+            }
+        } else {
+            $error = 'Заказ не найден';
         }
-        return redirect()->route('cart');
+        return [
+            'status' => $status,
+            'error' => $error,
+        ];
     }
 
     public function sendPartnerForm(MailRequest $request)
     {
         $data = $request->validated();
+        $status = 'error';
+        $error = '';
         try {
             Mail::send(new PartnerEmail($data));
+            $status = 'success';
         } catch (\Exception $e) {
-            session()->put('status', $e->getMessage());
+            $error = $e->getMessage();
         }
-        return redirect()->route('partnership');
+        return [
+            'status' => $status,
+            'error' => $error,
+        ];
     }
 }
 ?>

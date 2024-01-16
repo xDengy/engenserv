@@ -12,8 +12,9 @@ window.updateCart = function (cart) {
     }
 }
 
-let backBtn = document.querySelector('.error-btn-back');
-if (backBtn) {
+let backBtns = document.querySelectorAll('[data-btn="back"]');
+for (let i = 0; i < backBtns.length; i++) {
+    let backBtn = backBtns[i];
     backBtn.addEventListener('click', () => {
         history.back();
     })

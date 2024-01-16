@@ -7,12 +7,14 @@
     <link rel="stylesheet" href="{{ asset('/css/catalog.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/catalogSection.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/nav.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ asset('/css/cartAddPopup.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/breadcrumbs.css') }}" media="screen">
 @endsection
 
 @section('scripts')
     <script src="{{ asset('js/catalog.js') }}"></script>
     <script src="{{ asset('js/catalogSection.js') }}"></script>
+    <script src="{{ asset('js/cartAddPopup.js') }}"></script>
 @endsection
 
 @section('content')
@@ -60,7 +62,7 @@
                                     </a>
                                     <div class="item-cart-info">
                                         <div class="item-price">
-                                            {{$element->price}} ₽
+                                            {{number_format($element->price, 0, '', ' ')}} ₽
                                         </div>
                                         <div class="item-add-to-cart detail-add-to-cart" data-id="{{$element->id}}" data-url="{{route('cart.update.product')}}">
                                             +
@@ -69,8 +71,9 @@
                                 </div>
                             </div>
                         @endforeach
-                        {{$elements->links('includes.pagination')}}
                     </div>
+                    {{$elements->links('includes.pagination')}}
+                    @include('includes.cartAddPopup')
                 </div>
             </div>
         </div>

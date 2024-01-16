@@ -19586,6 +19586,22 @@ var _loop2 = function _loop2() {
 for (var _i = 0; _i < minuses.length; _i++) {
   _loop2();
 }
+var deleteBtns = document.querySelectorAll('.cart-delete');
+var _loop3 = function _loop3(_i2) {
+  deleteBtns[_i2].addEventListener('click', function () {
+    var url = deleteBtns[_i2].dataset.url;
+    var id = deleteBtns[_i2].dataset.id;
+    url = "".concat(url, "?id=").concat(id);
+    fetch(url).then(function (resp) {
+      return resp.json();
+    }).then(function (json) {
+      window.updateCart(json, true);
+    });
+  });
+};
+for (var _i2 = 0; _i2 < deleteBtns.length; _i2++) {
+  _loop3(_i2);
+}
 function changeQuantity(parent) {
   var minus = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
   var counter = parent.querySelector('.counter-value');
@@ -19610,10 +19626,31 @@ function changeQuantity(parent) {
     var totalCount = document.querySelector('.count-info .info-value');
     totalCount.textContent = json.count;
     var totalPrice = document.querySelector('.price-info .info-value');
-    totalPrice.textContent = json.total + ' ₽';
+    totalPrice.textContent = number_format(json.total, 0, '', ' ') + ' ₽';
     var itemPrice = parent.parentNode.querySelector('.cart-price');
-    itemPrice.textContent = json.price * json.quantity + ' ₽';
+    itemPrice.textContent = number_format(json.price * json.quantity, 0, '', ' ') + ' ₽';
   });
+}
+function number_format(number, decimals, dec_point, thousands_point) {
+  if (number == null || !isFinite(number)) {
+    throw new TypeError("number is not valid");
+  }
+  if (!decimals) {
+    var len = number.toString().split('.').length;
+    decimals = len > 1 ? len : 0;
+  }
+  if (!dec_point) {
+    dec_point = '.';
+  }
+  if (!thousands_point) {
+    thousands_point = ',';
+  }
+  number = parseFloat(number).toFixed(decimals);
+  number = number.replace(".", dec_point);
+  var splitNum = number.split(dec_point);
+  splitNum[0] = splitNum[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_point);
+  number = splitNum.join(dec_point);
+  return number;
 }
 })();
 

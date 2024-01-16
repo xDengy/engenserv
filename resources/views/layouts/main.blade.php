@@ -11,7 +11,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         @php
             $id = session()->getId();
             $counter = \Cart::session($id)->getTotalQuantity();
@@ -87,7 +87,7 @@
                             @endphp
                         </div>
                     </a>
-                    <div class="info">
+                    <div class="info hd-mob">
                         <div class="link">
                             <a href="tel:{{$settings->phone}}">
                                 {{$settings->phone}}
@@ -100,13 +100,27 @@
                         </div>
                     </div>
                 </div>
-                @if(!empty($menu))
-                    <nav class="menu">
-                        @foreach($menu as $link)
-                            <a href="{{$link->link}}">{{$link->name}}</a>
-                        @endforeach
-                    </nav>
-                @endif
+                <div class="wrapper">
+                    @if(!empty($menu))
+                        <nav class="menu">
+                            @foreach($menu as $link)
+                                <a href="{{$link->link}}">{{$link->name}}</a>
+                            @endforeach
+                        </nav>
+                        <div class="info sh-mob">
+                            <div class="link">
+                                <a href="tel:{{$settings->phone}}">
+                                    {{$settings->phone}}
+                                </a>
+                            </div>
+                            <div class="link">
+                                <a href="mailto:{{$settings->email}}">
+                                    {{$settings->email}}
+                                </a>
+                            </div>
+                        </div>
+                    @endif
+                </div>
                 <div class="copyright-text">
                     2014 © ООО "Инженерсервис".
                     <br>

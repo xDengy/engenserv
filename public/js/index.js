@@ -20422,6 +20422,21 @@ var searchBtn = document.querySelector('.search svg');
 searchBtn.addEventListener('click', function () {
   searchBtn.parentNode.classList.toggle('active');
 });
+var burgerMenu = document.querySelector('.burger-menu');
+if (burgerMenu) {
+  var burgerBtn = document.querySelector('.burger');
+  if (burgerBtn) {
+    burgerBtn.addEventListener('click', function () {
+      burgerMenu.classList.add('active');
+    });
+  }
+  var burgerMenuClose = document.querySelector('.burger-menu .burger-close');
+  if (burgerMenuClose) {
+    burgerMenuClose.addEventListener('click', function () {
+      burgerMenu.classList.remove('active');
+    });
+  }
+}
 })();
 
 /******/ })()

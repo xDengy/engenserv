@@ -6,12 +6,14 @@
     <meta name="keywords" content="{{$page->keywords}}">
     <link rel="stylesheet" href="{{ asset('/css/catalogDetail.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/catalogSection.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ asset('/css/cartAddPopup.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/breadcrumbs.css') }}" media="screen">
 @endsection
 
 @section('scripts')
     <script src="{{ asset('/js/catalogDetail.js') }}"></script>
     <script src="{{ asset('js/catalogSection.js') }}"></script>
+    <script src="{{ asset('js/cartAddPopup.js') }}"></script>
 @endsection
 
 @section('content')
@@ -34,7 +36,7 @@
                                     </div>
                                     <div class="swiper-pagination"></div>
                                 </div>
-                                <div class="swiper min-swiper">
+                                <div class="swiper min-swiper hd-mob">
                                     <div class="swiper-wrapper">
                                         @foreach($element->attachment->all() as $attachment)
                                             <div class="swiper-slide">
@@ -56,7 +58,7 @@
                                     @endif
                                 </div>
                                 <div class="detail-price">
-                                    {{$element->price}} ₽
+                                    {{number_format($element->price, 0, '', ' ')}} ₽
                                 </div>
                                 <div class="detail-desc">
                                     @php
@@ -75,11 +77,13 @@
                                         Технические характеристики
                                     </div>
                                     <div class="other-desc">
-                                        @php
-                                            echo htmlspecialchars_decode($element->chars)
-                                        @endphp
-                                        <div class="other-show-text">
-                                            Свернуть
+                                        <div class="other-desc-wrapper">
+                                            @php
+                                                echo htmlspecialchars_decode($element->chars)
+                                            @endphp
+                                            <div class="other-show-text">
+                                                Свернуть
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="other-show-btn btn btn--blue">
@@ -98,11 +102,13 @@
                                         Принципиальная схема
                                     </div>
                                     <div class="other-desc">
-                                        @php
-                                            echo htmlspecialchars_decode($element->scheme)
-                                        @endphp
-                                        <div class="other-show-text">
-                                            Свернуть
+                                        <div class="other-desc-wrapper">
+                                            @php
+                                                echo htmlspecialchars_decode($element->scheme)
+                                            @endphp
+                                            <div class="other-show-text">
+                                                Свернуть
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="other-show-btn btn btn--blue">
@@ -117,6 +123,7 @@
                             @endif
                         </div>
                     </div>
+                    @include('includes.cartAddPopup')
                 </div>
             </div>
         </div>

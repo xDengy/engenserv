@@ -21,8 +21,8 @@ class PartnerEmail extends Mailable
     {
         return $this
             ->from('xDN.progger@yandex.com', 'Инженерсервис')
-            ->to($this->data->email)
+            ->to($this->data['email'])
             ->subject('Заявка в партнеры с Инженерсервис')
-            ->view('mails.partnership.admin', ['order' => $this->data]);
+            ->view('mails.partnership.admin', ['data' => $this->data]);
     }
 }

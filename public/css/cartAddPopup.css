@@ -1,0 +1,32 @@
+.cart-add-popup {
+    position: fixed;
+    top: -100px;
+    left: calc(50vw - (225px / 2));
+    z-index: 100000;
+    transition: ease-in-out 0.5s;
+}
+
+.cart-add-popup.show {
+    top: 315px;
+}
+
+.cart-add-popup.show-mini {
+    top: 35px;
+}
+
+.popup-block {
+    background: rgba(0, 0, 0, 0.70);
+    width: 225px;
+    height: 45px;
+    flex-shrink: 0;
+    color: var(--whiteColor);
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.popup-block svg {
+    margin-right: 15px;
+}

@@ -11,10 +11,12 @@ class AdminNewOrderEmail extends Mailable
     use Queueable, SerializesModels;
 
     private $order;
+    private $title;
 
-    public function __construct($order)
+    public function __construct($order, $title)
     {
         $this->order = $order;
+        $this->title = $title;
     }
 
     public function build()
@@ -22,7 +24,7 @@ class AdminNewOrderEmail extends Mailable
         return $this
             ->from('xDN.progger@yandex.com', 'Инженерсервис')
             ->to('xxdenkenxx@gmail.com')
-            ->subject('Новый заказ с Инженерсервис')
+            ->subject($this->title)
             ->view('mails.order.admin', ['order' => $this->order]);
     }
 }

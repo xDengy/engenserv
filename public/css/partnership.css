@@ -71,3 +71,48 @@
 .form-img {
     width: 45%;
 }
+
+.error {
+    color: #F00;
+    display: none;
+}
+
+.error.show {
+    display: block;
+}
+
+@media (max-width: 1024px) {
+    .partnership h1, .page-desc, .partners, .form {
+        margin-top: 25px;
+    }
+
+    .partner {
+        flex-direction: column;
+    }
+
+    .partner-text-wrap, .partner-img, .form-wrapper {
+        width: 100%;
+    }
+
+    .partner-text-wrap, .partner-desc {
+        margin-top: 15px;
+    }
+
+    .partnership form {
+        margin-top: 30px;
+    }
+
+    .form {
+        margin-bottom: 25px;
+    }
+
+    .partnership {
+        margin-top: 25px;
+    }
+}
+
+@media (max-width: 376px) {
+    .page-desc {
+        font-size: 1.5rem;
+    }
+}

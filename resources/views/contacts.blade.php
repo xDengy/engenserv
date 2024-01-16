@@ -9,6 +9,10 @@
     <script src="https://api-maps.yandex.ru/v3/?apikey=5ef633e1-f97f-4f5f-a13e-533e152665d3&lang=ru_RU"></script>
 @endsection
 
+@section('scripts')
+    <script src="{{ asset('/js/contacts.js') }}"></script>
+@endsection
+
 @section('content')
     <section class="contacts">
         <div class="container">
@@ -35,7 +39,7 @@
                 </div>
                 <div class="contacts-item">
                     <div class="info-name">
-                        Мобильный телефон:
+                        Телефон:
                     </div>
                     <div class="info-value">
                         {{$contact->phone}}
@@ -59,17 +63,16 @@
                 </div>
             </div>
             <div class="contacts-map" id="map">
-
             </div>
             <script>
-                initMap();
-                async function initMap() {
+                initMap({{$contact->map_x}}, {{$contact->map_y}});
+
+                async function initMap(x, y) {
                     // Промис `ymaps3.ready` будет зарезолвлен, когда загрузятся все компоненты основного модуля API
                     await ymaps3.ready;
 
-                    const {YMap, YMapDefaultSchemeLayer, YMapDefaultFeaturesLayer, YMapMarker} = ymaps3;
-                    const {YMapDefaultMarker} = await ymaps3.import('@yandex/ymaps3-markers@0.0.1');
-
+                    const {YMap, YMapDefaultSchemeLayer, YMapDefaultFeaturesLayer, YMapMarker, YMapControls} = ymaps3;
+                    const {YMapZoomControl} = await ymaps3.import('@yandex/ymaps3-controls@0.0.1');
                     // Иницилиазируем карту
 
                     const map = new YMap(
@@ -80,7 +83,7 @@
                         {
                             location: {
                                 // Координаты центра карты
-                                center: [{{$contact->map_x}}, {{$contact->map_y}}],
+                                center: [x, y],
 
                                 // Уровень масштабирования
                                 zoom: 10
@@ -91,10 +94,11 @@
                     // Добавляем слой для отображения схематической карты
                     map.addChild(new YMapDefaultSchemeLayer());
                     map.addChild(new YMapDefaultFeaturesLayer());
+                    map.addChild(new YMapControls({position: 'top right', orientation: 'vertical'}).addChild(new YMapZoomControl({})));
                     const content = document.createElement('div');
-                    content.classList.add('test');
+                    content.classList.add('contacts-map-icon');
                     map.addChild(new YMapMarker({
-                        coordinates: [{{$contact->map_x}}, {{$contact->map_y}}],
+                        coordinates: [x, y],
                         draggable: false
                     }, content));
                 }

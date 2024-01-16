@@ -19570,6 +19570,14 @@ var sortBlock = document.querySelector('.sort-block');
 sortBlock.addEventListener('click', function () {
   sortBlock.classList.toggle('active');
 });
+var toCartBtn = document.querySelector('.detail-add-to-cart');
+toCartBtn.addEventListener('click', function (e) {
+  var url = e.target.dataset.url;
+  var id = e.target.dataset.id;
+  var count = 1;
+  url = "".concat(url, "?id=").concat(id, "&count=").concat(count);
+  window.addProductToCart(url);
+});
 })();
 
 /******/ })()

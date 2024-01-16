@@ -16,10 +16,13 @@
         <tbody>
         @foreach($order->catalog as $item)
             <tr>
-                <td><img style="width: 100px; height: 100px; object-fit: cover; margin-right: 10px;" src="{{$item->attachment->first()->url}}">{{$item->name}}</td>
-                <td>{{$item->pivot->price}}</td>
+                <td><img style="width: 100px; height: 100px; object-fit: cover; margin-right: 10px;" src="{{$item->attachment->first()->url}}"></td>
+                <td>{{number_format($item->pivot->price, 0, '', ' ')}} ₽</td>
                 <td>{{$item->pivot->quantity}}</td>
-                <td>{{$item->pivot->quantity * $item->pivot->price}}</td>
+                <td>{{number_format(($item->pivot->quantity * $item->pivot->price), 0, '', ' ')}} ₽</td>
+            </tr>
+            <tr>
+                <td>{{$item->name}}</td>
             </tr>
         @endforeach
         </tbody>

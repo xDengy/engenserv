@@ -10,13 +10,9 @@ for (let i = 0; i < sectionItems.length; i++) {
     }
 }
 
-let toCartBtn = document.querySelector('.detail-add-to-cart')
-toCartBtn.addEventListener('click', e => {
-    let url = e.target.dataset.url;
-    let id = e.target.dataset.id;
-    let count = 1;
-    url = `${url}?id=${id}&count=${count}`;
-    fetch(url).then(resp => resp.json()).then(json => {
-        window.updateCart(json)
-    })
+let showSections = document.querySelector('.catalog-section-open-wrapper');
+let sections = document.querySelector('.catalog-sections');
+showSections.addEventListener('click', () => {
+    sections.classList.toggle('active');
+    showSections.classList.toggle('active');
 })

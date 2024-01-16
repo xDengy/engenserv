@@ -28,7 +28,7 @@ Route::get('/cart/', [StaticController::class, 'cart'])->name('cart');
 Route::get('/order/', [StaticController::class, 'order'])->name('order');
 
 Route::get('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
-Route::get('/cart/remove/{product}', [CartController::class, 'remove'])->name('cart.remove');
+Route::get('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
 Route::get('/cart/update', [CartController::class, 'update'])->name('cart.update');
 Route::get('/cart/update-cart', [CartController::class, 'updateCart'])->name('cart.update.product');
 Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');

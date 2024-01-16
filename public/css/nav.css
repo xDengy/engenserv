@@ -31,3 +31,9 @@
 .nav-arrow, .nav-text {
     margin-right: 20px;
 }
+
+@media (max-width: 1024px) {
+    .page-navigation {
+        margin-top: 25px;
+    }
+}

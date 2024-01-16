@@ -96,3 +96,20 @@ let searchBtn = document.querySelector('.search svg');
 searchBtn.addEventListener('click', () => {
     searchBtn.parentNode.classList.toggle('active');
 })
+
+let burgerMenu = document.querySelector('.burger-menu');
+if (burgerMenu) {
+    let burgerBtn = document.querySelector('.burger');
+    if (burgerBtn) {
+        burgerBtn.addEventListener('click', () => {
+            burgerMenu.classList.add('active');
+        })
+    }
+
+    let burgerMenuClose = document.querySelector('.burger-menu .burger-close');
+    if (burgerMenuClose) {
+        burgerMenuClose.addEventListener('click', () => {
+            burgerMenu.classList.remove('active');
+        })
+    }
+}

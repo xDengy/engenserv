@@ -19566,6 +19566,27 @@ var __webpack_exports__ = {};
   !*** ./resources/js/partnership.js ***!
   \*************************************/
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+var form = document.querySelector('.partnership form');
+var error = form.querySelector('.error');
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+  var formData = new FormData(form);
+  $.ajax({
+    url: form.getAttribute('action'),
+    method: 'POST',
+    contentType: false,
+    processData: false,
+    data: formData,
+    success: function success(data) {
+      if (data.status === 'success') {
+        error.classList.remove('show');
+        document.body.classList.add('show-form');
+      } else {
+        error.classList.add('show');
+      }
+    }
+  });
+});
 })();
 
 /******/ })()

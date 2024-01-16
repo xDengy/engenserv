@@ -7,10 +7,12 @@
     <link rel="stylesheet" href="{{ asset('/css/partnership.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/breadcrumbs.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/form.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ asset('/css/formSuccess.css') }}" media="screen">
 @endsection
 
 @section('scripts')
     <script src="{{ asset('js/partnership.js') }}"></script>
+    <script src="{{ asset('js/formSuccess.js') }}"></script>
 @endsection
 
 @section('content')
@@ -56,6 +58,9 @@
                         <input id="name" name="name" class="form-input" type="text" placeholder="Ваше имя" required>
                         <input id="email" name="email" class="form-input" type="email" placeholder="Электронная почта" required>
                         <input class="form-btn btn btn--blue" type="submit" value="Отправить заявку">
+                        <div class="error">
+                            Ошибка отправки формы
+                        </div>
                         <div class="personal-wrapper">
                             <input class="personal-input" id="personal" name="personal" type="checkbox" required>
                             <label for="personal">
@@ -68,10 +73,11 @@
                         </div>
                     </form>
                 </div>
-                <div class="form-img">
+                <div class="form-img hd-mob">
                     <img src="{{$page->photos1->first()->url}}" alt="">
                 </div>
             </div>
         </div>
     </section>
+    @include('includes.formSuccess', ['orderId' => null])
 @endsection

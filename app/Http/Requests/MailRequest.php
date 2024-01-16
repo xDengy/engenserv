@@ -24,10 +24,10 @@ class MailRequest extends FormRequest
     public function rules()
     {
         return [
-            'id'   => 'required|integer',
+            'id'   => 'integer',
             'email'   => 'required|email',
             'name'    => 'required|string',
-            'message' => 'required|string',
+            'message' => 'string',
         ];
     }
 }

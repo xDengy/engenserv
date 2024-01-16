@@ -123,8 +123,42 @@ CATALOG
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 /*
 CATALOG END
 */
+
+@media (max-width: 1024px) {
+    .sort-title {
+        display: none;
+    }
+
+    .catalog-item {
+        width: calc(50% - 25px);
+    }
+
+    .catalog-items {
+        gap: 50px;
+    }
+
+    .title-sort {
+        margin-top: 40px;
+    }
+
+    .catalog-items {
+        margin-top: 25px;
+    }
+
+    section.catalog {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 625px) {
+
+    .catalog-item {
+        width: 100%;
+    }
+}

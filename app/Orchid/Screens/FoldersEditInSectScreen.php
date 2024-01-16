@@ -26,7 +26,7 @@ class FoldersEditInSectScreen extends Screen
         $el = Catalog::find($id);
         $this->parent = $el;
         if($this->exists){
-            $this->name = $el->name;;
+            $this->name = $el->name;
         } else {
             $this->name = 'Создать';
         }

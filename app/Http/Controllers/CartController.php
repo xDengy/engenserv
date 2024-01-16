@@ -23,15 +23,16 @@ class CartController extends Controller
             'associatedModel' => $element
         ]);
         $data['items'] = $cart->getContent();
-        $data['totalPrice'] = $cart->getTotal();;
+        $data['totalPrice'] = $cart->getTotal();
         $data['count'] = $cart->getTotalQuantity();
         return response()->json($data);
     }
 
-    public function remove(Catalog $element)
+    public function remove(Request $request)
     {
+        $elementId = $request->get('id');
         $cart = \Cart::session(session()->getId());
-        $cart->remove($element->id);
+        $cart->remove($elementId);
 
         $data['items'] = $cart->getContent();
         $data['totalPrice'] = $cart->getTotal();

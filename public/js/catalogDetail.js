@@ -19568,15 +19568,9 @@ var __webpack_exports__ = {};
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 var detailOtherItems = document.querySelectorAll('.other-item');
 var _loop = function _loop(i) {
-  var showBtn = detailOtherItems[i].querySelector('.other-show-btn');
-  var title = detailOtherItems[i].querySelector('.other-title');
-  if (showBtn) {
-    showBtn.addEventListener('click', function () {
-      detailOtherItems[i].classList.toggle('active');
-    });
-  }
-  if (title) {
-    title.addEventListener('click', function () {
+  var otherBtns = detailOtherItems[i].querySelectorAll('.other-show-btn, .other-title');
+  for (var j = 0; j < otherBtns.length; j++) {
+    otherBtns[j].addEventListener('click', function () {
       detailOtherItems[i].classList.toggle('active');
     });
   }
@@ -19587,7 +19581,7 @@ for (var i = 0; i < detailOtherItems.length; i++) {
 var swiper = new Swiper(".min-swiper", {
   slidesPerView: 6,
   spaceBetween: 8,
-  loop: true,
+  loop: false,
   speed: 400,
   allowTouchMove: true,
   watchSlidesProgress: true
@@ -19604,6 +19598,15 @@ var swiper2 = new Swiper(".max-swiper", {
     el: ".swiper-pagination",
     clickable: true
   }
+});
+var toCartBtn = document.querySelector('.detail-add-to-cart');
+toCartBtn.addEventListener('click', function (e) {
+  var url = e.target.dataset.url;
+  var id = e.target.dataset.id;
+  var count = 1;
+  url = "".concat(url, "?id=").concat(id, "&count=").concat(count);
+  toCartBtn.textContent = 'Добавить ещё';
+  window.addProductToCart(url);
 });
 })();
 

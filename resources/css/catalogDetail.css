@@ -99,16 +99,19 @@ h1 {
     font-weight: 300;
     background: var(--whiteColor);
     border-top: none;
-    padding-left: 50px;
-    padding-right: 20px;
     width: 100%;
 }
 
 .other-item.active .other-desc {
-    border: 0.2px solid var(--blackColor);
     max-height: 1000px;
+}
+
+.other-item .other-desc-wrapper {
+    border: 0.2px solid var(--blackColor);
     padding-top: 35px;
     padding-bottom: 10px;
+    padding-left: 50px;
+    padding-right: 20px;
 }
 
 .other-show-text {
@@ -168,4 +171,27 @@ h1 {
 
 .other-show-btn:hover {
     box-shadow: unset;
+}
+
+@media (max-width: 1024px) {
+    .catalog-info-wrapper {
+        flex-direction: column;
+    }
+
+    .img-wrapper, .detail-info {
+        width: 100%;
+    }
+
+    .detail-info {
+        margin-top: 25px;
+    }
+
+    .other-items {
+        margin-top: 25px;
+        margin-bottom: 40px;
+    }
+
+    .catalog-detail {
+        margin-top: 40px;
+    }
 }

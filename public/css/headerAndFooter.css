@@ -137,7 +137,11 @@ header {
 }
 
 footer {
-    background: #2749A2;
+    background-color: #2749A2;
+    background-image: url('/images/footerBG.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
     margin-top: 100px;
 }
 
@@ -174,13 +178,95 @@ footer .menu a {
 HEADER & FOOTER END
 */
 
+.burger-menu {
+    position: fixed;
+    right: -100%;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    max-width: 415px;
+    background: var(--whiteColor);
+    padding: 20px 20px 20px 45px;
+    z-index: 100;
+    transition: ease-in-out 0.25s;
+}
+
+.burger-menu-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100% - 40px);
+}
+
+.burger-close {
+    cursor: pointer;
+    text-align: right;
+}
+
+.burger-menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+}
+
+.burger-menu-list a {
+    width: fit-content;
+}
+
+.burger-menu-info {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.burger-info-wrapper {
+    width: 100%;
+}
+
+.burger-menu-list a, .burger-menu-info a {
+    color: var(--blackColor);
+}
+
+.burger-info-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.burger-menu .search {
+    width: 70%;
+}
+
+.burger-menu .search .search-input {
+    position: static;
+    opacity: 1;
+    gap: 0;
+}
+
+.burger-menu .search .search-input input {
+    width: 100%;
+}
+
+.burger-menu .cart {
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.burger-menu .cart a {
+    width: fit-content;
+}
+
+.burger-info-wrapper {
+    margin-top: 20px;
+}
+
 @media (max-width: 1024px) {
-    .info {
-        gap: 3rem;
+    .burger-menu.active {
+        right: 0;
     }
 
-    header .menu, header .logo, header .search, header .cart {
-        display: none;
+    .info {
+        gap: 3rem;
+        width: 100%;
     }
 
     footer .menu {
@@ -198,6 +284,30 @@ HEADER & FOOTER END
     footer .wrapper .info {
         gap: 15px;
         flex-direction: column;
+        align-items: end;
         justify-content: unset;
     }
+
+    .copyright-text {
+        margin-top: 4rem;
+    }
 }
+
+@media (max-width: 767px) {
+    .cart .counter {
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 686px) {
+    .cart .counter {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 445px) {
+    .cart .counter {
+        font-size: 1rem;
+    }
+}
+

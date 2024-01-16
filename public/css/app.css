@@ -64,12 +64,16 @@ body {
     background: var(--blueColor);
 }
 
+.btn--green {
+    background: var(--greenColor);
+}
+
 .btn--round {
     border-radius: 10rem;
 }
 
 .sh-mob {
-    display: none !important;;
+    display: none !important;
 }
 
 @media (max-width: 1440px) {
@@ -88,7 +92,12 @@ body {
     }
 
     .sh-mob {
-        display: flex !important;;
+        display: flex !important;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
     }
 }
 

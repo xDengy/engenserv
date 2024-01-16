@@ -7,10 +7,12 @@
     <link rel="stylesheet" href="{{ asset('/css/offer.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/form.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('/css/breadcrumbs.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ asset('/css/formSuccess.css') }}" media="screen">
 @endsection
 
 @section('scripts')
     <script src="{{ asset('js/offer.js') }}"></script>
+    <script src="{{ asset('js/formSuccess.js') }}"></script>
 @endsection
 
 @section('content')
@@ -29,8 +31,11 @@
                         <input type="hidden" name="id" value="{{$order->id}}">
                         <input id="name" name="name" class="form-input" type="text" placeholder="Ваше имя" required>
                         <input id="email" name="email" class="form-input" type="email" placeholder="Электронная почта" required>
-                        <textarea name="message" id="message" class="form-textarea" required>Комментарий к заказу...</textarea>
+                        <textarea name="message" id="message" class="form-textarea" placeholder="Комментарий к заказу..." ></textarea>
                         <input class="form-btn btn btn--blue" type="submit" value="Отправить заявку">
+                        <div class="error">
+                            Ошибка отправки формы
+                        </div>
                         <div class="personal-wrapper">
                             <input class="personal-input" id="personal" name="personal" type="checkbox" required>
                             <label for="personal">
@@ -61,9 +66,9 @@
                                         <div class="cart-counter">
                                             {{$item->quantity}} шт
                                         </div>
-                                        <div class="vert-break"></div>
+                                        <div class="vert-break hd-mob"></div>
                                         <div class="cart-price">
-                                            {{$item->total}}  ₽
+                                            {{number_format($item->total, 0, '', ' ')}} ₽
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +81,7 @@
                                 Итого
                             </div>
                             <div class="info-value">
-                                {{$cart['totalPrice']}} ₽
+                                {{number_format($cart['totalPrice'], 0, '', ' ')}} ₽
                             </div>
                         </div>
                         <div class="count-info">
@@ -91,5 +96,6 @@
                 </div>
             </div>
         </div>
+        @include('includes.formSuccess', ['orderId' => $order->id])
     </section>
 @endsection

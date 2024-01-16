@@ -19566,6 +19566,35 @@ var __webpack_exports__ = {};
   !*** ./resources/js/offer.js ***!
   \*******************************/
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+var form = document.querySelector('.offer-page form');
+var error = form.querySelector('.error');
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+  var formData = new FormData(form);
+  $.ajax({
+    url: form.getAttribute('action'),
+    method: 'POST',
+    contentType: false,
+    processData: false,
+    data: formData,
+    success: function success(data) {
+      if (data.status === 'success') {
+        error.classList.remove('show');
+        document.body.classList.add('show-form');
+        var shadow = document.querySelector('.form-success .shadow');
+        var close = document.querySelector('.form-success .success-close');
+        shadow.addEventListener('click', function () {
+          window.location.href = '/cart';
+        });
+        close.addEventListener('click', function () {
+          window.location.href = '/cart';
+        });
+      } else {
+        error.classList.add('show');
+      }
+    }
+  });
+});
 })();
 
 /******/ })()

@@ -19576,8 +19576,9 @@ window.updateCart = function (cart) {
     cartEl.querySelector('.counter').innerText = 0;
   }
 };
-var backBtn = document.querySelector('.error-btn-back');
-if (backBtn) {
+var backBtns = document.querySelectorAll('[data-btn="back"]');
+for (var i = 0; i < backBtns.length; i++) {
+  var backBtn = backBtns[i];
   backBtn.addEventListener('click', function () {
     history.back();
   });

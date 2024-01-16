@@ -4,7 +4,7 @@
     font-weight: 700;
 }
 
-form {
+section form {
     margin-top: 80px;
 }
 
@@ -27,7 +27,7 @@ form {
 .form-textarea {
     background: #D9D9D9;
     width: 100%;
-    height: 80px;
+    height: 8rem;
     color: rgba(0, 0, 0, 0.5);
     font-size: 2.4rem;
     font-style: italic;
@@ -90,4 +90,23 @@ input.personal-input + label::before {
 
 input.personal-input:checked + label::before {
     background-image: url('/images/checkboxActive.svg');
+}
+
+@media (max-width: 1024px) {
+    .form-btn {
+        width: 100%;
+        margin-top: 25px;
+    }
+
+    .form-input#email, .form-textarea {
+        margin-top: 25px;
+    }
+
+    .form-title {
+        font-size: 2rem;
+    }
+
+    .form-input, .form-textarea {
+        font-size: 1.5rem;
+    }
 }

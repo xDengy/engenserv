@@ -54,3 +54,35 @@ h1 {
 .error-btn-back {
     color: var(--blueColor);
 }
+
+@media (max-width: 1024px) {
+    .error {
+        margin-top: 25px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .error-desc {
+        font-size: 1.5rem;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .error-btns {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 767px) {
+    .error-btn-back, .error-btn-main {
+        width: 100%;
+        max-width: unset;
+        gap: 25px;
+    }
+
+    .error-btns {
+        margin: 25px 0;
+    }
+}

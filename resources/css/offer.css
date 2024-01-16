@@ -45,6 +45,8 @@
     width: 145px;
     margin-right: 30px;
     border: 0.2px solid #000;
+    display: flex;
+    flex-shrink: 0;
 }
 
 .item-info {
@@ -92,4 +94,47 @@
 
 .count-info .info-value {
     text-align: right;
+}
+
+.error {
+    color: #F00;
+    display: none;
+}
+
+.error.show {
+    display: block;
+}
+
+@media (max-width: 1024px) {
+    .offer-container {
+        flex-direction: column;
+        margin-top: 40px;
+    }
+
+    .offer-form, .offer-cart {
+        width: 100%;
+    }
+
+    .offer-cart {
+        margin-top: 25px;
+    }
+
+    .offer-page {
+        margin-bottom: 25px;
+        margin-top: 25px;
+    }
+
+    .offer-form form {
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 376px) {
+    .cart-title, .cart-price, .cart-counter {
+        font-size: 1.5rem;
+    }
+
+    .info-value {
+        font-size: 3rem;
+    }
 }

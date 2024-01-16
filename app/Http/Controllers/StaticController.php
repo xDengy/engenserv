@@ -215,6 +215,9 @@ class StaticController extends Controller
     public function order(Request $request)
     {
         $this->getCart();
+        if (empty($this->data['cart']['items']->toArray())) {
+            return redirect()->route('cart');
+        }
         $session = $request->session();
         if (!$session->has('order')) {
             $order = Order::create([]);
@@ -238,7 +241,7 @@ class StaticController extends Controller
         $cartSess = \Cart::session($id);
         $this->data['cart'] = [];
         $this->data['cart']['items'] = $cartSess->getContent();
-        $this->data['cart']['totalPrice'] = $cartSess->getTotal();;
+        $this->data['cart']['totalPrice'] = $cartSess->getTotal();
         $this->data['cart']['quantity'] = $cartSess->getTotalQuantity();
     }
 

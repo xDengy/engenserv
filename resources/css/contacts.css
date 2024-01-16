@@ -45,8 +45,37 @@ h1 {
     height: 600px;
 }
 
-.test {
+.contacts-map-icon {
     width: 64px;
     height: 56px;
-    background: blue;
+    background-image: url("/images/mapIcon.svg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: -56px;
+    left: -32px;
+}
+
+@media (max-width: 1024px) {
+    .contacts-info {
+        width: 100%;
+    }
+
+    .info-name {
+        white-space: nowrap;
+    }
+
+    .contacts-map {
+        height: 380px;
+        margin: 25px -20px 0;
+    }
+
+    .contacts {
+        margin-top: 25px;
+    }
+
+    h1 {
+        margin: 25px 0;
+    }
 }
