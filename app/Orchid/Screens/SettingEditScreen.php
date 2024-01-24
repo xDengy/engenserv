@@ -86,6 +86,16 @@ class SettingEditScreen extends Screen
                         ->required(),
                 ]),
             ])->title('Текст'),
+            Layout::rows([
+                Group::make([
+                    Input::make('setting.formName')
+                        ->title('Название формы')
+                        ->required(),
+                    Quill::make('setting.formText')
+                        ->title('Текст формы')
+                        ->required(),
+                ]),
+            ])->title('Форма'),
         ];
     }
 

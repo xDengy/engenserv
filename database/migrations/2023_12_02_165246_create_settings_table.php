@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('logo');
             $table->string('logotext');
+            $table->string('formName');
+            $table->string('formText');
             $table->string('phone');
             $table->string('email');
             $table->string('copyright');

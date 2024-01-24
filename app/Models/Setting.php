@@ -19,5 +19,7 @@ class Setting extends Model
         'phone',
         'email',
         'copyright',
+        'formName',
+        'formText',
     ];
 }
